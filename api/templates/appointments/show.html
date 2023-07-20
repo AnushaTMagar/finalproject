@@ -1,0 +1,97 @@
+{% extends 'patients/patient_sidebar.html' %}
+{% load static %}
+{% block header2 %}
+
+<style>
+        .readonly-input{
+            background-color: white;
+        }  
+         .btn-successs{
+            background-color:#30877e ;color:#ffffff;
+        }
+        .btn-successs:hover{
+            background-color:#0c6259 ; 
+            color:#ffffff;
+        }
+    </style>   
+
+{% endblock %}
+{% block main %}
+    <div class="panel panel-primary">
+        <div class="panel-headingg" style="background-color:#30877e ;color:#ffffff;padding: 10px 20px;font-size: 18px;">
+            Appointment
+        </div>
+        <div class="panel-body">
+            <form id="id_form" style="margin-left: 2%; margin-right: 2%">
+                <div class="form-group row">
+                    <label class="col-md-2">
+                        Patient
+                    </label>
+                    <div class="col-md-4">
+                        <input value="{{ appointment.patient.short_info }}" class="form-control readonly-input" readonly style="background-color: white">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2">
+                        Date of Appointment
+                    </label>
+                    <div class="col-md-4">
+                        <input value="{{ appointment.appointment_date }}" class="form-control readonly-input" readonly style="background-color: white">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2">
+                        Status
+                    </label>
+                    <div class="col-md-4">
+                        <input value="{{ appointment.status }}" class="form-control readonly-input" readonly style="background-color: white">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2">
+                        Information
+                    </label>
+                    <div class="col-md-4">
+                        <textarea class="form-control">
+                            {{ appointment.info|default_if_none:"" }}
+                        </textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2">
+                        Complaints
+                    </label>
+                    <div class="col-md-4">
+                        <textarea class="form-control">
+                            {{ appointment.complaints|default_if_none:"" }}
+                        </textarea>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group row">
+{#                    <div class="col-md-8"></div>#}
+                    <div class="col-md-2">
+                        <button class="btn btn-successs" type="button" onclick="finish();">End Appointment</button>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-danger" type="button" onclick="cancel();">Cancel Appointment</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $('#id_appointments_nav_item').addClass('active');
+    </script>
+    <script>
+
+        function finish() {
+            $('#id_form').attr('action', '{% url 'appointments:finish' appointment_id=appointment.id %}').submit();
+        }
+        function cancel() {
+            $('#id_form').attr('action', '{% url 'appointments:cancel' appointment_id=appointment.id %}').submit();
+        }
+    </script>
+{% endblock %}

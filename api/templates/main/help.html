@@ -1,0 +1,41 @@
+{% extends 'base/base_menu.html' %}
+{% load static %}
+{% block header %}
+    <style>
+        body {
+            padding-top: 40px;
+        }
+
+        .screenshot {
+            margin: 30px auto;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+<h2 class="page-header">
+    To patient records
+</h2>
+<p class="lead">
+    You can create and edit new patient records, monitor the patient's condition and monitor the dynamics.
+</p>
+<h3>Creating a Patient Record</h3>
+<p class="lead">
+    To create a patient card, first you need to go the patient table
+     click on the "Add patient" button and go to a new page.
+</p>
+<p class="lead"> On new page,enter the patient's full name, gender and date of birth. Fields "Address" and "Kin
+    activity"
+    are not required to fill out. It is also necessary to indicate the number of the compulsory medical insurance policy.
+     (OMI- obligatory medical insurance) to
+     uniquely identify the patient in the database.
+</p>
+<p class="lead">
+    Now, "Save the patient's medical record", a patient record is created in the database and you can
+     see her. To do this, you need to click on the main menu "Patients", select "Patients" in the side menu
+     and click on the "Open" button in the form of a green square with a pen in the line of the patient of interest
+</p>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

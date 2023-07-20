@@ -1,0 +1,49 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}"/>
+</head>
+<body style="padding-top: 70px;">
+<div class="container">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="navbar-brand">MEDREC</div>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="{% url 'main:index' %}">Home</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Information</a></li>
+                <li><a href="{% url 'main:help' %}">Help</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="row">
+        <h2>Objective of the project</h2>
+    </div>
+    <div class="row">
+        <p class="lead">
+            Our goal is to create a convenient and powerful tool for doctors who need to improve efficiency daily work with medical records.
+        </p>
+    </div>
+    <div class="row">
+        <h2>Project Goal</h2>
+    </div>
+    <div class="row">
+        <p class="lead">
+            Our goal is to create a convenient and powerful tool for doctors who need to improve efficiency daily work with medical records.  
+        </p>
+    </div>
+    <div class="row">
+        <p class="lead">
+            This website is made within the framework of the course work and is Major projects of a single systems of integration of medicine and information technologies.
+        </p>
+    </div>
+</div>
+<script type="text/javascript" src="{% static 'jquery/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

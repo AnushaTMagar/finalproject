@@ -1,0 +1,432 @@
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MEDREC</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}" />
+    <style>
+        .carousel-caption {
+            display: inline-flex;
+            vertical-align: middle;
+            text-align: left;
+            background-color: rgba(4, 33, 77, 0.5);
+        }
+
+        .nav-tabs {
+            margin-bottom: 15px;
+        }
+
+        code {
+            font-size: 80%;
+        }
+
+        .marketing h2 {
+            font-weight: normal;
+        }
+
+        .marketing .span4 p {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        body {
+            padding-bottom: 40px;
+            color: #484848;
+            min-width: auto;
+                 width:100%w;
+        }
+
+        .navbar-brand {
+            margin-right: auto;
+            margin-left: -300;
+        }
+
+        a {
+                        text-decoration: underline;
+                        color: #555;
+                    }
+
+                    p {
+                        margin-top: 20px;
+                        font-size: medium;
+                        color: #555;
+                    }
+
+                    .small-container {
+                        max-height:100%;
+                        margin: auto;
+                        padding-left: 5px;
+                        padding-right: 5px; 
+                    }
+
+                    .small-img-row {
+                        display: flex;
+                        justify-content: space-between; 
+                    }
+
+                    .small-img-col {
+                        flex-basis: 100%;
+                        cursor: pointer;
+
+                    }
+
+                    .container {
+                        max-width: 100%;
+                        width: 500vw; 
+                        margin: auto;
+                        padding-left: 25px;
+                        padding-right: 25px; 
+                    }
+
+                    .col-2 {
+                        flex-basis: 40%;
+                        min-width: 250px;
+                    }
+
+                    .col-2 img {
+                        max-width: 100%;
+                        padding: 10px 85px;
+                        height: 300px;
+                    }
+
+                    .col-2 h1 {
+                        font-size: 50px;
+                        line-height: 100px;
+                        margin: 25px 0;
+                    }
+
+                    .btn {
+                        display: inline-block;
+                        background: #09584b;
+                        color: #ebf2fc;
+                        padding: 8px 30px;
+                        margin: 30px 0;
+                        border-radius: 30px;
+                        justify-content: space-between;
+                        transition:  0.5s;
+                    }
+
+                    .btn:hover {
+                        background: #0667f0;
+                    }
+
+                    .row {
+                        display: flex;
+                        align-items: left;
+                        flex-wrap: wrap;
+                        justify-content: space-between;
+                        margin-right: 40px;
+                        margin-left: 40px;
+                        
+                    }
+
+                    .small-container {
+                        max-width: auto;
+                        height: 500px;
+                        margin: auto;
+                        padding-left: 10px;
+                        /* padding-right: 10px; */
+                    }
+
+                    .small-img-row {
+                        display: flex;
+                        justify-content: space-between;
+                    }
+
+                    .small-img-col {
+                        flex-basis: 24%;
+                        cursor: pointer;
+
+                    }
+
+                    .col-4 {
+                        flex-basis: 25%;
+                        padding: 10px;
+                        min-width: 200px;
+                        margin-bottom: 50px;
+                        transition: transform 0.5s;
+                    }
+
+                    .col-4 img {
+                        width: 100%;
+                    }
+
+                    .title {
+                        text-align: center;
+                        margin: 0 auto 80px;
+                        position: relative;
+                        line-height: 60px;
+                        color: #555;
+
+                    }
+
+                    .title::after {
+
+                        content: '';
+                        background: #ebf2fc;
+                        width: 80px;
+                        height: 5px;
+                        border-radius: 5px;
+                        position: absolute;
+                        bottom: 0;
+                        left: 50%;
+                        transform: translateX(-50%)
+                    }
+
+                    h4 {
+                        color: #555;
+                        font-weight: normal;
+                    }
+
+                    .col-4 p {
+                        font-size: 14px
+                    }
+
+                    .rating .fa {
+                        color: #ff7f50;
+                    }
+
+                    .col-4:hover {
+                        transform: translateY(-10px);
+                    }
+
+                    .offer {
+                        background: radial-gradient(#FFFFFF, #ebf2fc);
+                        margin-top: 20px;
+                        height: 600px;
+                        width: 100vw; 
+                       /* margin-left: 10px; */
+                        padding: 20px 0;
+                    }
+                  
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background:#ebf2fc;">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">MEDREC</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbar-collapse" style="margin-left:-50px">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="{% url 'main:about' %}">About</a></li>
+                    <li><a href="">Information</a></li>
+                    <li><a href="{% url 'main:help' %}">Help</a></li>
+                    <li><a href="/adminclick">Admin</a></li>
+                    <li><a href="/doctorclick">Doctor</a></li>
+                    <li><a href="/patientclick">Patient</a></li>
+
+                    {% comment %} <li><a href="#" data-toggle="modal" data-target="#login-modal">Sign In</a></li> {% endcomment %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+  
+    <div class="offer" >
+    <div class="small-container" style="margin-top: 50px;">
+        <div class="row">
+            <div class="col-2">
+                <!-- <p>About us</p> -->
+                <h1>MEDREC</h1>
+                <smallh>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae hendrerit mauris. Quisque ac
+                    feugiat arcu, at fermentum dui. Integer ut lacinia nisl. Vestibulum ante ipsum primis in faucibus
+                    orci luctus et ultrices posuere cubilia curae; Proin lobortis risus at ex aliquet, vitae luctus
+                    dui vulputate. Nunc interdum leo nec enim interdum, vitae tincidunt risus 
+                 </small>
+                    <a href="" class="btn">Sign in </a>
+
+            </div>
+            <div class="col-2"  style="margin-top:50px; width: 500px;height:300px;">
+                <img src="{% static 'img/hi.svg' %}" class="offer-img">
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="container">
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    {% comment %} <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Sign In</h4>
+                    </div> {% endcomment %}
+                    {% comment %} <div class="modal-body">
+                        <div class="row">
+                            <div style="padding-right: 10px; padding-left: 50px"> <ul class="nav nav-tabs">
+                                <li class="active"><a href="#login" data-toggle="tab">Sign In</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active">
+                                        <form id="id_login_form" action="{% url 'main:login' %}" class="form-horizontal"
+                                            method="post">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" style="margin-right:1px ;">Username </label>
+                                                <div class="col-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="glyphicon glyphicon-user"></i>
+                                                        </span>
+                                                        <input id="id_login" class="form-control" placeholder="Username"
+                                                            name="username" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label"style="margin-right:1px ;">Password 
+
+
+
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="glyphicon glyphicon-lock"></i>
+                                                        </span>
+                                                        <input type="password" class="form-control" id="id_password"
+                                                            placeholder="Password" name="password" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row pull-right" style="margin-right:5px;">
+                                                <button id="login-btn" type="submit" 
+                                                    class="btn btn-primary btn-sm">
+                                                    Sign In
+                                                </button>
+                                                <a id="sign-up-btn" type="button" class="btn btn-primary btn-sm"
+                                                    href="{% url 'users:create' %}">
+                                                    Sign Up 
+                                                </a>
+                                            </div> 
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> {% endcomment %}
+                    {% comment %} </div>
+                    <div class="modal-footer">
+                        <a href="{% url 'users:reset_password' %}">Forgot Your Password?</a>
+                    </div> {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    {% comment %} <script>
+        function tryLogin() {
+            var username = $('#id_login').val();
+            var password = $('#id_password').val();
+            $.get('{% url "api:check_login" %}', {
+                username: username, 
+                password: password
+            }, function (resp) {
+                if (resp && resp.error) {
+                    bootbox.alert({
+                        message: resp.error
+                    });
+                }
+                else {
+                    $('#id_login_form').submit();
+                }
+            });
+        }
+
+    </script> {% endcomment %}
+    <div class="container" style="padding-top: 50px;">
+        <div class="small-container">
+            <h2 class="title">Our services</h2>
+            <div class="row">
+                <div class="col-4">
+                    <img src="{% static 'img/booking.svg' %}"></a>
+                    {% comment %} <a href="{% url 'appointments:create' %}">
+                        <h4>Appointmemt booking</h4>
+                    </a> {% endcomment %}
+                    <p> easy appointment </p>
+                </div>
+                <div class="col-4">
+                    <a href="product%20details%20.html"><img src="{% static 'img/regis.svg' %}"></a>
+                    
+                        <h4>Patient Registration</h4>
+                    </a>
+                    <p> Register yourself </p>
+                </div>
+                <div class="col-4">
+                    <a href="product%20details%20.html"><img src="{% static 'img/analysis.svg' %}"></a>
+                    <a href="product%20details%20.html">
+                        <h4>Medical visualization</h4>
+                    </a>
+                    <p> Check your own progress </p>
+                </div>
+            </div>
+            <div class="container">
+                <header id="slideShow" class="carousel slide">
+                    <ol class="carousel-indicators" style="margin-top: 10px;">
+                        <li data-target="#slideShow" data-slide-to="0" class="active"></li>
+                        <li data-target="#slideShow" data-slide-to="1"></li>
+                        <li data-target="#slideshow" data-slide-ti="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="{% static 'img/healthcare-banner.jpg' %}" style="height: 150%; width: 2000px;" />
+                            <div class="carousel-caption">
+                                <h2>
+                                    MEDREC - service for working with medical records of patient for digitization
+                                    Purpose.
+                                    <br />
+                                </h2>
+                                <a class="btn btn-lg btn-primary" href="#" data-toggle="modal"
+                                    data-target="#login-modal" role="button">Sign In</a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="{% static 'img/slider-img.jpg' %}" style="height: 150%; width: 2000px;" />
+                            <div class="carousel-caption">
+                                <h2>
+                                    Track of patient medical records and keep records in digital Form.
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="{% static 'img/slider4.jpg' %}" style="height: 150%; width: 2000px;" />
+                            <div class="carousel-caption">
+                                <h2>
+                                    Easy acccessible medical records for doctor for record keeping and diagnosis.
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#slideShow" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#slideShow" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </header>
+
+                <script type="text/javascript" src="{% static 'jquery/jquery.js' %}"></script>
+                <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+                <script type="text/javascript" src="{% static 'bootbox/bootbox.js' %}"></script>
+                <script type="text/javascript">
+                    {          $("#slideShow").carousel({ interval: 5000 }); }
+                </script>
+
+</body>
+    
+
+
+
+</html>

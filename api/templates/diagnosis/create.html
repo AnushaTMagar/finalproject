@@ -1,0 +1,125 @@
+{% extends 'core/base_menu.html' %}
+{% load static %}
+{% block header %}
+    <style>
+        body {
+            padding-top: 90px;
+        }
+
+        .panel-body {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        .btn {
+            padding: 6px 51px;
+        }
+        
+        .panel-primary>.panel-headin {
+    color: #fff;
+    background-color:  #30877e;
+    border-color:  #30877e;
+    padding: 10px;
+}.btn-successs{
+            background-color:#30877e ;color:#ffffff;
+        }
+        .btn-successs:hover{
+            background-color:#0c6259 ; 
+            color:#ffffff;
+        }
+    </style>>
+{% endblock %}
+{% block content %}
+    <div class="panel panel-primary" >
+        <div class="panel-headin">
+            <h3  style="margin-left: 20px;">Patient Diagnosis</h1>
+        </div>
+        <div class="panel-body">
+            <form id="id_diagnosis" method="post">
+                {% csrf_token %}
+                <input name="patient" type="hidden" value="{{ patient.id }}">
+                <div class="form-group row">
+                    <label class="col-md-2 control-label">Patient</label>
+                    <div class="col-md-3">
+                        <input class="form-control" value="{{ patient.name }}" readonly
+                               style="background-color: white">
+                    </div>
+                    <label class="col-md-2 control-label">Gender</label>
+                    <div class="col-md-2">
+                        <input class="form-control" value="{{ patient.gender }}" readonly
+                               style="background-color: white">
+                    </div>
+                    <label class="col-md-1 control-label">Age</label>
+                    <div class="col-md-1">
+                        <input class="form-control" value="{{ patient.age }}" readonly style="background-color: white">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 control-label">Date of diagnosis</label>
+                    <div class="col-md-3">
+                        <input class="form-control" name="diagnosis_date" id="id_diagnosis_date">
+                    </div>
+                    <label class="col-md-2 control-label">Type of diagnosis</label>
+                    <div class="col-md-3">
+                        <select class="form-control" name="diagnosis_type">
+                            <option value="Preliminary">Preliminary</option>
+                            <option value="Clinical">Clinical</option>
+                            <option value="Final">Final</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 control-label">Summary</label>
+                    <div class="col-md-10">
+                        <input class="form-control" name="summary">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 control-label">Information</label>
+                    <div class="col-md-10">
+                        <textarea class="form-control" name="info"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 control-label">Complications</label>
+                    <div class="col-md-10">
+                        <input class="form-control" name="complications">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 control-label">Diagnosis</label>
+                    <div class="col-md-10">
+                        <textarea class="form-control" name="diagnosis"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="panel-footer">
+            <div class="form-group row">
+                <div class="col-md-8">
+
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-successs" onclick="$('#id_diagnosis').submit();">Submit</button>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-danger"
+                            onclick="window.location='{% url 'patients:patient_diagnosis' patient_id=patient.id %}'">
+                        clear
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"></script>
+    <script>
+        $('#id_diagnosis_date').datepicker({
+            format: 'yyyy-mm-dd',
+            language: 'en',
+            orientation: 'bottom'
+        });
+    </script>
+{% endblock %}

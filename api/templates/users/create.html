@@ -1,0 +1,131 @@
+{% load static %}
+
+  
+<html>
+
+<head>
+    <title>Sign Up</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.2/lottie.min.js"></script>
+
+    <style>
+    .container {
+        display: flex;
+      }
+      
+      .column1 {
+        flex: 2;
+        margin:20px; /* Each column takes equal width */
+        /* Add additional styling as per your requirements */
+      }
+      .column2 {
+        flex: 1; /* Each column takes equal width */
+        /* Add additional styling as per your requirements */
+      }
+      </style>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}" />
+</head>
+
+<body style="padding-top: 60px;">
+    <div class="container">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <div class="navbar-brand">MEDREC</div>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'main:index' %}">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">Site <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'main:about' %}">About</a></li>
+                            <li><a href="">Help</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container" >
+            <div class="column1">
+                <h1 class="page-header">Sign Up</h1>
+                <form class="form" method="post">
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label">Role: </label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="sel1" name="role">
+                                <option value="patient">Patient</option>
+                                <option value="doctor">Doctor</option>
+                                <option value="nurse">Nurse</option>
+                                <option value="hospital_admin">Admin</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="id_name" class="col-sm-2 form-control-label">Name: </label>
+                        <div class="col-sm-10">
+                            <input id="id_name" name="name" class="form-control" style="background-color: #ffffff" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="id_surname" class="col-sm-2 form-control-label">Surname: </label>
+                        <div class="col-sm-10">
+                            <input id="id_surname" name="surname" class="form-control"
+                                style="background-color: #ffffff" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="id_email" class="col-sm-2 form-control-label">Email: </label>
+                        <div class="col-sm-10">
+                            <input id="id_email" name="email" class="form-control" style="background-color: #ffffff" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="id_password" class="col-sm-2 form-control-label">Password: </label>
+                        <div class="col-sm-10">
+                            <input id="id_password" name="password" type="password" class="form-control"
+                                style="background-color: #ffffff" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="id_confirm_password" class="col-sm-2 form-control-label">Confirm Password: </label>
+                        <div class="col-sm-10">
+                            <input id="id_confirm_password" name="confirm_password" type="password" class="form-control"
+                                style="background-color: #ffffff" />
+                        </div>
+                    </div>
+                    <div class="row pull-right">
+                        <button class="btn btn-success">Sign Up</button>
+                        <button class="btn btn-warning" type="reset">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="column2"><div id="lottie-animation"></div>
+            
+        </div>
+       
+        </div>
+        
+
+        </div>
+</body>
+<script type="text/javascript" src="{% static 'jquery/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+</html>
+
+<script>
+    const animationContainer = document.getElementById('lottie-animation');
+    const animationURL = 'https://assets3.lottiefiles.com/packages/lf20_pprxh53t.json'; // Replace with the actual URL of your Lottie animation file
+  
+    const animation = bodymovin.loadAnimation({
+      container: animationContainer,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: animationURL
+    });
+  </script>
+  

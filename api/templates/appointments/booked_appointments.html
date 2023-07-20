@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booked Appointments</title>
+</head>
+<body>
+    <h1>Booked Appointments</h1>
+    <ul>
+        {% for appointment in appointments %}
+            <li>{{ appointment.Doctor }}</li>
+            <li>{{ appointment.start_time }}</li>
+        {% empty %}
+            <li>No appointments booked.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

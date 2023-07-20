@@ -1,0 +1,72 @@
+{% extends 'patients/sidebar.html' %}
+{% load static %}
+
+{% block main %}
+<head><style>
+    .btn-successs{
+       background-color:#30877e ;color:#ffffff;
+   }
+   .btn-successs:hover{
+       background-color:#0c6259 ; 
+       color:#ffffff;
+   }
+</style></head>
+    <div class="tab-pane active" id="id_tests">
+        <div class="row">
+            <div class="col-xs-4">
+                <div class="input-group">
+                    <input class="form-control" placeholder="Name of a Patient">
+                    <span class="input-group-btn">
+                                <button class="btn btn-successs" type="button">Search</button>
+                            </span>
+                </div>
+            </div>
+
+        </div>
+        <br/>
+        <table id="patients-table" class="table table-striped table-bordered table-hover" cellpadding="0"
+               style="width: 100%; ">
+            <thead>
+                <tr>
+                    <th>Patient</th>
+                    <th>Date of Appointments</th>
+                    <th>Information</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="patients-table-body">
+                {% for appointment in appointments %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'patients:show' patient_id=appointment.patient_id %}" style="color: #30877e;">
+                                {{ appointment.patient.name }} (ОМI No. {{ appointment.patient.omi_card }})
+                            </a>
+                        </td>
+                        <td>{{ appointment.appointment_date }}</td>
+                        <td>{{ appointment.information }}</td>
+                        <td>{{ appointment.status }}</td>
+                        <td>
+                            <a href="{% url 'appointments:show' appointment_id=appointment.id %}" class="btn btn-success">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+    <div class="col-sm-6">
+        <button class="btn btn-successs" onclick="window.location='{% url 'appointments:create' %}'" style="background-color:#30877e ;color:#ffffff;position: absolute;
+        right: 0;padding: 8px 12px; font-size: 17px;" >Add Appointments
+        </button>
+    </div>
+   </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $('#id_appointments_nav_item').addClass('active');
+    </script>
+{% endblock %}

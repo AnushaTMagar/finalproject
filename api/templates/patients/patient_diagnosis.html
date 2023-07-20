@@ -1,0 +1,70 @@
+{% extends 'patients/patient_sidebar.html' %}
+{% load static %}
+{% block main %}<head>
+    <style>
+         .btn-successs{
+            background-color:#30877e ;color:#ffffff;
+        }
+        .btn-successs:hover{
+            background-color:#0c6259 ; 
+            color:#ffffff;
+        }
+    </style>
+</head>
+    <div class="row">
+        <div class="col-sm-2">
+            <a class="btn btn-successs"
+               href="{% url 'diagnosis:create' patient_id=patient.id %}">
+               Add a diagnosis
+            </a>
+        </div>
+    </div>
+    <br/>
+    {% if patient.diagnosis.count != 0 %}
+        <table class="table table-bordered" cellpadding="0">
+            <thead>
+                <tr>
+                    <th>Diagnosis</th>
+                    <th>Date of diagnosis</th>
+                    <th>Type of diagnosis</th>
+                    <th>Summary</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for diagnosis in patient.diagnosis.all %}
+                    <tr>
+                        <td>{{ diagnosis.diagnosis }}</td>
+                        <td>{{ diagnosis.diagnosis_date }}</td>
+                        <td>{{ diagnosis.diagnosis_type }}</td>
+                        <td>{{ diagnosis.summary|default_if_none:"-" }}</td>
+                        <td>
+                            <a href="{% url 'diagnosis:show' diagnosis_id=diagnosis.id %}"
+                               class="btn btn-success">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </a>
+                            <a onclick="deleteTest('{% url 'diagnosis:delete' diagnosis_id=diagnosis.id %}');"
+                               class="btn btn-danger">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+                    The patient has no diagnosis. <a href="{% url 'diagnosis:create' patient_id=patient.id %}">Add a diagnosis?</a>
+        </div>
+    {% endif %}
+    <script src="{% static 'bootbox/bootbox.js' %}"></script>
+    <script>
+        $('#id_diagnosis_nav_item').addClass('active');
+    </script>
+    <script>
+
+    </script>
+{% endblock %}
