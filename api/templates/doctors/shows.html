@@ -1,0 +1,100 @@
+{% extends 'doctors/patient_sidebar.html' %}
+{% load static %}
+{% block main %}
+    <div class="panel panel-primary">
+        <div class="panel-headingg" style="background-color:#30877e;color:#ffffff;padding: 10px 20px;font-size: 18px;">
+            Patient {{ patient.get_name }}
+        </div>
+        <div class="panel-body">
+            <form id="id_patient" action="{% url 'doctors:update' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="patient_id" value="{{ patient.id }}">
+                <div class="form-group row">
+                    <label class="col-md-2 control-label">Profile Picture</label>
+                    <div class="col-md-4">
+                        <img src="{{ patient.profile_pic.url }}" alt="Profile Picture" width="150" height="150">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 control-label">Address</label>
+                    <div class="col-md-6">
+                        <textarea name="address" class="form-control">{{ patient.address }}</textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 control-label">Mobile</label>
+                    <div class="col-md-4">
+                        <input name="mobile" value="{{ patient.mobile }}" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 control-label">Symptoms</label>
+                    <div class="col-md-6">
+                        <textarea name="symptoms" class="form-control">{{ patient.symptoms }}</textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 control-label">Status</label>
+                    <div class="col-md-4">
+                        <select name="status" class="form-control">
+                            <option value="True" {% if patient.status %}selected{% endif %}>Active</option>
+                            <option value="False" {% if not patient.status %}selected{% endif %}>Inactive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 control-label">Assigned Doctor</label>
+                    <div class="col-md-4">
+                        <select name="assignedDoctorId" class="form-control">
+                            {% for doctor in doctors %}
+                                <option value="{{ doctor.user_id }}" {% if doctor.user_id == patient.assignedDoctorId %}selected{% endif %}>
+                                    {{ doctor.get_name }} ({{ doctor.department }})
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-danger" onclick="deletePatient()">Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="{% static 'bootbox/bootbox.js' %}"></script>
+    <script src="{% static 'bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"></script>
+    <script>
+        $('#id_patient_nav_item').addClass('active');
+
+        $(document).ready(function () {
+            var status = '{{ patient.status }}';
+            $('select[name="status"]').val(status).change();
+        });
+
+        function deletePatient() {
+            bootbox.confirm({
+                message: "Are you sure you want to delete the patient record?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+                    if (result) {
+                        $.post('{% url 'doctors:delete' %}', {'csrfmiddlewaretoken': '{{ csrf_token }}'})
+                            .done(function () {
+                                window.location = "{% url 'doctors:list' %}";
+                            });
+                    }
+                }
+            });
+        }
+    </script>
+{% endblock %}

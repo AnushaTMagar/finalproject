@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Available Slots</title>
+</head>
+<body>
+    <h1>Available Slots</h1>
+    <ul>
+        {% for doctor in doctors %}
+            <li>{{ doctor.name }}</li>
+            <ul>
+                {% for appointment in doctor.appointment_set.all %}
+                    <li>{{ appointment.start_time }} - {{ appointment.end_time }}</li>
+                {% empty %}
+                    <li>No available slots.</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </ul>
+</body>
+</html>

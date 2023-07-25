@@ -1,0 +1,186 @@
+{% extends 'core/base_menu.html' %}
+{% load static %}
+{% block header %}
+    <style>
+        body {
+            padding-top: 90px;
+        }
+
+        .form-group.required .form-control-label:after {
+            content: "*";
+            color: red;
+        }
+
+        .btn {
+            width: 100%;
+        }
+        .btn-successs{
+            background-color:#30877e ;color:#ffffff;
+        }
+        .btn-successs:hover{
+            background-color:#0b4842 ; 
+            color:#ffffff;
+        }
+    </style>
+    <link rel="stylesheet" href="{% static 'bootstrap-datepicker/css/bootstrap-datepicker.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap-datepicker/css/bootstrap-datepicker.css.map' %}">
+{% endblock %}
+{% block content %}
+    <div class="panel panel-primary" style="padding: 0.5cm">
+        <div class="panel-headingg" style="background-color:#30877e ;color:#ffffff;padding: 10px 20px;font-size: 18px;">
+            Creating a patient's medical record
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal" method="post" id="id_patient" ;">
+                {% csrf_token %}
+                <fieldset>
+                    <legend> Name</legend>
+                    
+                    <div class="form-group row required">
+                        <label for="id_name" class="col-sm-2 form-control-label">Name: </label>
+                        <div class="col-sm-4">
+                            <input id="id_name" name="name" class="form-control" style="background-color: #ffffff"/>
+                        </div>
+                        <label for="id_surname" class="col-sm-2 form-control-label">Surname: </label>
+                        <div class="col-md-4">
+                            <input id="id_surname" name="surname" class="form-control"
+                                   style="background-color: #ffffff"/>
+                        </div>
+                    </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Basic patient information</legend>
+                    <div class="form-group row required">
+                        <label for="id_gender" class="col-sm-2 form-control-label">Gender: </label>
+                        <div class="col-sm-4">
+                            <select id="id_gender" class="form-control" name="gender">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div>
+                        <label for="id_birthday" class="col-sm-2 form-control-label">Date of Birth: </label>
+                        <div class="col-sm-4">
+                            <input id="id_birthday" name="birthday" class="form-control"
+                                   style="background-color: #ffffff"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="id_address" class="col-sm-2 form-control-label">Address: </label>
+                        <div class="col-sm-4">
+                            <textarea id="id_address" name="address" class="form-control"></textarea>
+                        </div>
+                        <label for="id_occupation" class="col-sm-2 form-control-label">Occupation: </label>
+                        <div class="col-sm-4">
+                            <input id="id_occupation" name="occupation" class="form-control"
+                                   style="background-color: #ffffff"/>
+                        </div>
+                        <label for="id_email" class="col-sm-2 form-control-label">Email: </label>
+                        <div class="col-sm-4">
+                            <input id="id_email" name="occupation" class="form-control"
+                                   style="background-color: #ffffff"/>
+                        </div>
+                        <label for="id_contact" class="col-sm-2 form-control-label">Contact Number: </label>
+                        <div class="col-sm-4">
+                            <input id="id_contact" name="Contact NO." class="form-control"
+                                   style="background-color: #ffffff"/>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Medical Data</legend>
+                    <div class="form-group row required">
+                        <label for="id_omi_card" class="col-sm-2 form-control-label">ОМI: </label>
+                        <div class="col-sm-4">
+                            <input id="id_omi_card" data-mask="9999-9999-9999-9999" name="omi_card" class="form-control"
+                                   style="background-color: #ffffff"/>
+                        </div>
+                        
+                    </div>
+                    <div class="form-group row required">
+                        <label for="id_weight" class="col-sm-2 form-control-label">weight: </label>
+                        <div class="col-sm-4">
+                            <input id="id_weight"  name="weight" class="form-control"
+                                   style="background-color: #ffffff"/>
+                        </div>
+                        <div class="form-group row required">
+                            <label for="id_bp" class="col-sm-2 form-control-label">Blood Pressure: </label>
+                            <div class="col-sm-4">
+                                <input id="id_bp" name="bp" class="form-control"
+                                       style="background-color: #ffffff"/>
+                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="id_disabled" class="col-sm-2 form-control-label">Disability: </label>
+                        <div class="col-sm-2">
+                            <select id="id_disabled" name="is_disabled" class="form-control"
+                                    style="background-color: #ffffff">
+                                <option value="False">Not available</option>
+                                <option value="True">Available</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="id_blood_group" class="col-sm-2 form-control-label">Blood Group: </label>
+                        <div class="col-sm-2">
+                            <select id="id_blood_group" name="blood_group" class="form-control">
+                                <option value="O-">O-</option>
+                                <option value="O+">O+</option>
+                                <option value="A-">A-</option>
+                                <option value="A+">A+</option>
+                                <option value="B-">B-</option>
+                                <option value="B+">B+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="AB+">AB+</option>
+                                
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="id_rh_factor" class="col-sm-2 form-control-label">Rh-Factor: </label>
+                        <div class="col-sm-2">
+                            <select id="id_rh_factor" name="rh_factor" class="form-control">
+                                <option value="Rh+">Rh+</option>
+                                <option value="Rh-">Rh-</option>
+                            </select>
+                        </div>  
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="id_password" class="col-sm-2 form-control-label">Password: </label>
+                        <input type:"password" id="id_password"  name="Password" class="form-control"
+                                   style="background-color: #ffffff ; "/>
+                        </div>
+                    
+                </fieldset>
+            </form>
+        </div>
+        <div class="panel-footer">
+            <div class="form-group row">
+                <div class="col-md-9">
+
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-successs" type="button" onclick="$('#id_patient').submit();">Create
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <link rel="stylesheet" href="{% static 'jasny-bootstrap/css/jasny-bootstrap.min.css' %}">
+    <script src="{% static 'jasny-bootstrap/js/jasny-bootstrap.min.js' %}"></script>
+    <script src="{% static 'bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"></script>
+    <script>
+        $('.omi_card').inputmask({
+            mask: '9999-9999-9999-9999'
+        });
+        $('#id_birthday').datepicker({
+            format: 'yyyy-mm-dd',
+            language: 'en',
+            orientation: 'bottom'
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,287 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Book Appointment</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.2/lottie.min.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <style>
+    .reserved-time {
+      background-color: red;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #Daeeec;
+      width: 100%;
+
+    }
+
+    .container {
+      max-width: 400px;
+      margin-left: 60px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 9px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .row {
+      display: flex;
+    }
+
+    .column {
+      width: 40%;
+      flex: 1;
+      padding: 30px;
+      align-items: center;
+    }
+
+    h1 {
+      text-align: center;
+      color: #16645d;
+      margin-bottom: 20px;
+    }
+
+    label {
+      color: #16645d;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    input[type="text"],
+    input[type="datetime-local"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      height: 120px;
+    }
+
+    .btn {
+      background-color: #30877e;
+      border-width: 1px;
+      color: #fff;
+      border-radius: 3px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      ;
+      padding: 7px;
+      font-size: 16px;
+      margin-left: 250px;
+      margin-top: 10px;
+      ;
+    }
+    button {
+ display: flex;
+ height: 3em;
+ width: 90px;
+ align-items: center;
+ justify-content: center;
+ background-color: #eeeeee4b;
+ border-radius: 3px;
+ letter-spacing: 1px;
+ transition: all 0.2s linear;
+ cursor: pointer;
+ border: none;
+ background: #fff;
+}
+
+button > svg {
+ margin-right: 5px;
+ margin-left: 5px;
+ font-size: 20px;
+ transition: all 0.4s ease-in;
+}
+
+button:hover > svg {
+ font-size: 1.2em;
+ transform: translateX(-5px);
+}
+
+button:hover {
+ box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
+ transform: translateY(-2px);
+}
+    </style>
+    <script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
+</head>
+
+<body>
+  <button>
+    <svg height="14" width="14" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1024"><path d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"></path></svg>
+    <span>Back</span>
+  </button>
+  <div class="row">
+
+    <div class="column">
+
+      <div class="container">
+        <h1>Book Appointment</h1>
+        <form method="post">
+          {% csrf_token %}
+          <label for="doctor">Doctor:</label>
+          <select name="doctor" id="doctor">
+            {% for doctor in doctors %}
+            <option value="{{ doctor.id }}">{{ doctor.full_name }}</option>
+            {% endfor %}
+          </select><br><br>
+
+          <label for="datetime">Date and Time:</label>
+          <input type="datetime-local" name="datetime" id="datetime" required>
+
+          <label for="complaints">Complaints:</label>
+          <input type="text" name="complaints" style="height:80px;" id="complaints" required>
+
+          <label for="contact">Contact:</label>
+          <input type="text" name="Contact NO." id="id_contact" required>
+
+          <input type="submit" value="Book Appointment" class="btn">
+        </form>
+      </div>
+    </div>
+    <div class="column">
+      <img src="{% static 'img/booking.svg' %}" style="height: 500px;width:500px;margin-left: 50px; ">
+    </div>
+  </div>
+  </div>
+        <input type="submit" value="Book Appointment">
+        <button id="payment-button">Pay with Khalti</button>
+    </form>
+</body>
+
+<script>
+    // Assuming you have an array of reserved time slots called 'reservedSlots'
+    var reservedSlots = {{ reserved_slots|safe }};
+
+// Get the datetime-local input element
+var datetimeInput = document.getElementById('datetime');
+
+// Add event listener for changes in the datetime input
+datetimeInput.addEventListener('input', function() {
+  var selectedTime = datetimeInput.value;
+  
+  // Check if the selected time is in the reserved slots array
+  if (reservedSlots.includes(selectedTime)) {
+    datetimeInput.classList.add('reserved-time');
+  } else {
+    datetimeInput.classList.remove('reserved-time');
+  }
+});
+function generate_uuidv4() {
+            var dt = new Date().getTime();
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,
+            function( c ) {
+               var rnd = Math.random() * 16;//random number in range 0 to 16
+               rnd = (dt + rnd)%16 | 0;
+               dt = Math.floor(dt/16);
+               return (c === 'x' ? rnd : (rnd & 0x3 | 0x8)).toString(16);
+            });
+         }
+        function sendData(data){
+            fetch("{% url 'appointments:payments' %}", {
+                method : "POST",
+                headers: {
+                    "Content-type": "application/json",
+                    "X-CSRFToken": csrftoken,
+                },
+                body: JSON.stringify({
+                    orderID: data.product_identity,
+                    transID: data.idx,
+                    payment_method: data.type.name,
+                    status: data.state.name,
+                }),
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                window.location.href=redirect_url + '?order_number='+data.order_number+'&payment_id='+data.transID;
+            });
+        }
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        let orderID={{order.order_number}}
+        let amount={{grand_total}}
+        let redirect_url="{% url 'appointments:order_complete' %}"
+        {% comment %} let url="{% url 'appointments:verify_payments' %}" {% endcomment %}
+        let csrftoken=getCookie("csrftoken")
+       
+        let codData = 
+                {
+							"product_identity": orderID,
+							"idx": generate_uuidv4(),
+							"type": {"name":"COD"},
+							"state": {"state":"Complete"},
+                }
+        var config = {
+            // replace the publicKey with yours
+            "publicKey": "test_public_key_d19e5219dbff48bda5edd4596ab9f83a",
+            "productIdentity": orderID,
+            "productName": "cart items",
+            "productUrl": window.location.href,
+            "paymentPreference": [
+                "KHALTI",
+                "EBANKING",
+                "MOBILE_BANKING",
+                "CONNECT_IPS",
+                "SCT",
+                ],
+            "eventHandler": {
+                onSuccess (payload) {
+                    // hit merchant api for initiating verfication
+                    console.log(payload);
+                    fetch("{% url 'appointments:verify_payements' %}",{
+						method : "POST",
+						headers: {
+							"Content-type": "application/json",
+							"X-CSRFToken": csrftoken,
+						},
+						body: JSON.stringify({
+							amount: payload.amount,
+							token: payload.token,
+						}),
+					})
+                    .then(response => response.json())
+                    .then(data => sendData(data))
+                    
+                    
+
+
+                },
+                onError (error) {
+                    console.log(error);
+                },
+                onClose () {
+                    console.log('widget is closing');
+                }
+            }
+        };
+
+        var checkout = new KhaltiCheckout(config);
+        var btn = document.getElementById("payment-button");
+        btn.onclick = function () {
+            // minimum transaction amount must be 10, i.e 1000 in paisa.
+            checkout.show({amount: amount*100});
+        }
+</script>
+
+</html>

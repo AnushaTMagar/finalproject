@@ -1,0 +1,156 @@
+{% extends 'doctors/patient_sidebar.html' %}
+{% load static %}
+{% block main %}
+    <div class="panel panel-primary">
+        <div class="panel-headingg"style="background-color:#30877e ;color:#ffffff;padding: 10px 20px;font-size: 18px;">
+            Patient {{ patient.surname }} {{ patient.name }} 
+        </div>
+        <div class="panel-body">
+            <form id="id_patient" action="{% url 'doctors:update' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="patient_id" value="{{ patient.id }}">
+                <div class="form-group row">
+                    <label class="col-md-2 control-label">Surname</label>
+                    <div class="col-md-2">
+                        <input name="surname" value="{{ patient.surname }}"
+                               class="form-control">
+                    </div>
+                    <label class="col-md-2 control-label">Name</label>
+                    <div class="col-md-2">
+                        <input name="name" value="{{patient.get_name}}"
+                               class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 control-label">Gender</label>
+                    <div class="col-md-2">
+                        <select id="id_gender" name="gender" class="form-control">
+                            <option value="male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                    <label class="col-md-2 control-label">Date of Birth</label>
+                    <div class="col-md-4">
+                        <input id="id_birthday" name="birthday" value="{{ patient.date_of_birth }}"
+                               class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 control-label">Blood Group</label>
+                    <div class="col-md-2">
+                        <select name="blood_group" class="form-control">
+                            <option value="O-">O-</option>
+                            <option value="O+">O+</option>
+                            <option value="A-">A-</option>
+                            <option value="A+">A+</option>
+                            <option value="B-">B-</option>
+                            <option value="B+">B+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="AB+">AB+</option>
+                        </select>
+                    </div>
+                    <label class="col-md-2 control-label">Rh-Factor</label>
+                    <div class="col-md-2">
+                        <select name="rh_factor" class="form-control">
+                            <option value="Rh+">Rh-</option>
+                            <option value="Rh-">Rh+</option>
+                        </select>
+                    </div>
+                    <label class="col-md-2 control-label">Disability</label>
+                    <div class="col-md-2">
+                        <select name="is_disabled" class="form-control">
+                            <option value="false">Not available</option>
+                            <option value="true">Available</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 control-label">Address</label>
+                    <div class="col-md-6">
+                        <textarea name="address"
+                                  class="form-control">{{ patient.address|default_if_none:"" }}</textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="{% static 'bootbox/bootbox.js' %}"></script>
+    <script src="{% static 'bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"></script>
+    <script>
+        $('#id_patient_nav_item').addClass('active');
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            var gender = '{{ patient.gender }}';
+            $('#id_gender option[value="' + gender + '"]').prop('selected', true);
+            var rhFactor = '{{ patient.rh_factor }}';
+            $('select option[value="' + rhFactor + '"]').prop('selected', true);
+            var bloodGroup = '{{ patient.blood_group }}';
+            $('select option[value="' + bloodGroup + '"]').prop('selected', true);
+            var isDisabled = '{{ patient.is_disabled }}';
+            $('select option[value="' + isDisabled + '"]').prop('selected', true);
+            $('#id_birthday').datepicker({
+                format: 'yyyy-mm-dd',
+                language: 'en-EN',
+                orientation: 'bottom'
+            });
+        });
+
+        function updatePatient() {
+            $('#id_patient').submit();
+        }
+
+        function deletePatient() {
+            bootbox.confirm({
+                message: "Are you sure you want to delete the patient record?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+                    if (result) {
+                        $.post('{% url 'doctors:delete' patient_id=patient.id %}', {'csrfmiddlewaretoken': '{{ csrf_token }}'})
+                            .done(function () {
+                                window.location = "{% url 'doctors:list' %}";
+                            });
+                    }
+                }
+            });
+        }
+
+        /*
+        Delete medical test
+         */
+        function deleteTest(url) {
+            bootbox.confirm({
+                message: "Are you sure you want to delete the medical record?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+                    if (result) {
+                        $.post(url, {'csrfmiddlewaretoken': '{{ csrf_token }}'})
+                            .done(function () {
+                                window.location = "{% url 'doctors:show' patient_id=patient.id %}";
+                            });
+                    }
+                }
+            });
+        }
+    </script>
+{% endblock %}

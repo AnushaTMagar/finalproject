@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE==edge">
+  <meta name="viewport" content="width=device-width, initial-scale==1.0">
+  <link rel="stylesheet" href="style.css">
+
+<body>
+<div class="side-menu">
+    <div class="brand-name">
+
+        <h1>Board</h1>
+    </div>
+    <div class="profile-container">
+        <div class="profile-image"></div>
+        <div class="profile-name">Dr Sona Sharma</div>
+        <div class="occupation-title">Anesthesiologist</div>
+        <button class="edit-profile-button">Edit Profile</button>
+      </div>
+      <ul>
+<li>Information</li>
+<li>Setting</li>
+<li>About us</li>
+<li>Logout</li>
+      </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="header">
+        <div class="nav">
+            <div class="search">
+                <input type="text" placeholder="Search..">
+                <button type="submit"> <img src="search.png"alt=""></button>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="recent-appointments">
+            <div class="title">
+                <h2> Recent Appointments</h2>
+                <a href="#" class="btn"> View all</a>
+
+        </div>
+<table>
+    <tr>
+        <th> OMI  </th>
+        <th> Patient's Name  </th>
+        <th> Age/Sex  </th>
+        <th> Address  </th>
+        <th> Phone No.</th>
+    </tr>
+    <tr>
+        <td> 1</td>
+        <td>Doctor</td>
+        <td> 24/F</td>
+        <td> Kathmandu</td>
+        <td> 1234567890 </td>
+        <td><a href="#" class="btn">View</a></td>
+
+    </tr>
+    <tr>
+        <td> 2</td>
+        <td>Doctor</td>
+        <td> 24/F</td>
+        <td> Kathmandu</td>
+        <td> 1234567890 </td>
+        <td><a href="#" class="btn">View</a></td>
+
+    </tr>
+    <tr>
+        <td> 3</td>
+        <td>Doctor</td>
+        <td> 24/F</td>
+        <td> Kathmandu</td>
+        <td> 1234567890 </td>
+        <td><a href="#" class="btn">View</a></td>
+
+    </tr>
+    <tr>
+        <td> 4</td>
+        <td>Doctor</td>
+        <td> 24/F</td>
+        <td> Kathmandu</td>
+        <td> 1234567890 </td>
+        <td><a href="#" class="btn">View</a></td>
+
+    </tr>
+    <tr>
+        <td> 5</td>
+        <td>Doctor</td>
+        <td> 24/F</td>
+        <td> Kathmandu</td>
+        <td> 1234567890 </td>
+        <td><a href="#" class="btn">View</a></td>
+
+    </tr>
+    <tr>
+        <td> 6</td>
+        <td>Doctor</td>
+        <td> 24/F</td>
+        <td> Kathmandu</td>
+        <td> 1234567890 </td>
+        <td><a href="#" class="btn">View</a></td>
+
+    </tr>
+    <tr>
+        <td> 7</td>
+        <td>Doctor</td>
+        <td> 24/F</td>
+        <td> Kathmandu</td>
+        <td> 1234567890 </td>
+        <td><a href="#" class="btn">View</a></td>
+
+    </tr>
+    
+</table>
+        
+    </div>
+</div>
+</body>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+    body{
+        min-height: 100vh;
+
+    }
+    a{
+        text-decoration: none;
+    }
+    li{
+        list-style: none;
+    }
+    h1{
+        color:#ffffff;
+        font-size: 25px;
+    }
+    h2{
+        color:#0a0a0a;
+        font-size: 25px;
+    }
+    tr{
+        color: #0b0b0b;
+      font-size: 14px;
+    }
+    
+
+    .side-menu{
+        position: fixed;
+        background: #30877e;
+        width: 20vw;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+
+        
+    }
+    .side-menu .brand-name{
+        height: 10vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+    }
+.side-menu li{
+    font-size: 15px;
+    padding: 10px 40px;
+    color: #f1f1f1;
+    align-items: center;
+}
+    .side-menu li:hover{
+        background:white ;
+        color: #30877e;
+    }
+    .profile-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.09px;
+    }
+    .profile-image {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .profile-name {
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .occupation-title {
+      color: #ffffff;
+      font-size: 14px;
+      
+    }
+    .edit-profile-button {
+      background-color: #ffffff;
+      color: #30877e;
+      border: none;
+      padding: 12px 5px;
+      font-size: 14px;
+      border-radius: 50px;
+      cursor: pointer;
+    }
+
+    .edit-profile-button:hover {
+      background-color: #e8e8e8;
+    
+    }
+
+    .container {
+        position: absolute;
+        right: 0;
+        width: 80vw;
+        height: 100vh;
+    }
+    .container .header{
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 80vw;
+        height: 10vh;
+        background:white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .container .header .nav {
+        width: 90%;
+        display: flex;
+        align-items: center;
+    }
+    .container .header .nav .search {
+        flex: 3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+       
+        
+    }
+
+    .container .header .nav .search input[type=text]{
+        border: none;
+        background: #f1f1f1;
+        padding: 20px;
+        width: 50%;
+        border-radius: 50px;
+    }
+
+    .container .header .nav .search button{
+        width: 40px;
+        height: 40px;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+    .container .header .nav .search button img{
+        width: 30px;
+        height: 30px;
+    }
+
+.container .content{
+    
+    
+    min-height: 70vh;
+      width: 160vh;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start; /* Updated */
+      align-items: flex-start; /* Updated */
+      gap: 20px; /* Added */
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+      background: #f6faf8;
+      margin: 5px 35px;
+      padding: 20px; /* Added */
+      border-radius: 20px;
+    }
+
+.container .content .recent-appointments {
+    min-height: 20vh;
+     flex: 5;
+     margin: 0 25px 25px 25px;
+     display: flex;
+     flex-direction: column;
+    }
+
+.container .content .recent-appointments .title {
+    display: flex;
+      align-items:center;
+      justify-content: flex-start;
+      border-bottom: 2px solid #333232;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+    .container .content .recent-appointments .title h2 {
+        color: #070707;
+      flex: 1;
+      margin: 0;
+      text-align: left; /* Added */
+    }
+    .container .content .recent-appointments .title .btn {
+        background-color: #30877e;
+      color: #fafffd;
+      border: none;
+      padding: 8px 5px;
+      font-size: 14px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .container .content .recent-appointments .title .btn:hover{
+        background-color: #757fb6;
+    }
+    
+
+
+    th,
+    td {
+        text-align: left;
+        padding: 10px 50px;
+        border-bottom: 0.5px solid #dad5d5;
+    }
+   
+    .btn{
+
+        background-color: #30877e;
+      color: #fafffd;
+      border: none;
+      padding: 6px 5px;
+      font-size: 14px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+</style>
+</head>
+
+</html>

@@ -1,0 +1,102 @@
+{% extends 'base/base_menu.html' %}
+{% load static %}
+{% block header %}
+    <style>
+        body {
+            padding-top: 80px;
+        }
+
+        .panel-body {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+        input[readonly] {
+            background-color: #fff;
+        }
+
+        .panel-heading h3 {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: normal;
+            width: 75%;
+            padding-top: 8px;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="panel panel-primary">
+        <div class="panel-headingg" style="margin-bottom: 20px;background-color:#30877e ;color:#ffffff;padding: 10px 20px;font-size: 18px;">
+                    <h3 class="panel-title pull-left">
+                {{ test_rec.name }}
+            </h3>
+            <button class="btn btn-success pull-right" onclick="window.location='{% url 'med_tests:report' test_id=test_rec.id %}'">Test Report</button>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            <form>
+                <div class="form-group row">
+                    <label class="col-md-2 control-label">Full Name</label>
+                    <div class="col-md-4">
+                        <input id="id_full_name" value="{{patient.get_name}}" readonly class="form-control" style="background-color: white">
+                    </div>
+                    {% comment %} <label class="col-md-1 control-label">Gender</label>
+                    <div class="col-md-2">
+                        <input id="id_gender" value="{{ patient.gender }}" readonly class="form-control" style="background-color: white">
+                    </div>
+                    <label class="col-md-1 control-label">Age</label>
+                    <div class="col-md-1">
+                        <input id="id_age" value="{{ patient.age }}" readonly class="form-control" style="background-color: white">
+                    </div> {% endcomment %}
+                </div>
+                <div class="form-group row">
+                    <label for="id_summary" class="col-md-2 control-label">Summary</label>
+                    <div class="col-md-4">
+                        <input id="id_summary" value="{{ test_rec.summary|default_if_none:'' }}" readonly class="form-control" style="background-color: white">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="id_info" class="col-md-2 control-label">Test Information</label>
+                    <div class="col-md-10">
+                        <textarea id="id_info" readonly class="form-control" style="background-color: white">{{ test_rec.info|default_if_none:'' }}</textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="id_test_date" class="col-md-2 control-label">Date of Examination</label>
+                    <div class="col-md-4">
+                        <input id="id_test_date" value="{{ test_rec.test_date|date:'d E Y' }}" readonly class="form-control" style="background-color: white">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            Indicators
+        </div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Test Name</th>
+                        <th>Normal Value</th>
+                        <th>Results</th>
+                        <th>Units</th>
+                    </tr>
+                </thead>
+                <tbody id="testTableBody">
+                    {% for indicator in indicators %}
+                    <tr>
+                        <td>{{ indicator.test_name }}</td>
+                        <td>{{ indicator.normal_value }}</td>
+                        <td>{{ indicator.results }}</td>
+                        <td>{{ indicator.units }}</td>
+                    </tr>
+                    
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

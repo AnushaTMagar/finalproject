@@ -1,0 +1,83 @@
+{% extends 'core/base_menu.html' %}
+{% load static %}
+{% block header %}
+    <style>
+        body {
+            padding-top: 90px;
+        }
+
+        .panel-body {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="panel panel-primary">
+        <div class="panel-headingg" style="background-color:#30877e ;color:#ffffff;padding: 10px 20px;font-size: 18px;">
+            Patient Diagnosis
+        </div>
+        <div class="panel-body">
+            <form id="id_diagnosis">
+                <div class="form-group row">
+                    <label class="col-md-2 control-label">Patient</label>
+                    <div class="col-md-3">
+                        <input class="form-control" value="{{ diagnosis.patient.full_name }}" readonly
+                               style="background-color: white">
+                    </div>
+                    <label class="col-md-2 control-label">Gender</label>
+                    <div class="col-md-2">
+                        <input class="form-control" value="{{ diagnosis.patient.gender }}" readonly
+                               style="background-color: white">
+                    </div>
+                    <label class="col-md-1 control-label">Age</label>
+                    <div class="col-md-1">
+                        <input class="form-control" value="{{ diagnosis.patient.age }}" readonly
+                               style="background-color: white">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 control-label">Date of Diagnosis</label>
+                    <div class="col-md-3">
+                        <input class="form-control" name="diagnosis_date" id="id_diagnosis_date"
+                               value="{{ diagnosis.diagnosis_date }}" readonly style="background-color: white">
+                    </div>
+                    <label class="col-md-2 control-label">Type of Diagnosis</label>
+                    <div class="col-md-3">
+                        <input class="form-control" name="diagnosis_type" value="{{ diagnosis.diagnosis_type }}"
+                               readonly style="background-color: white">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 control-label">Summary</label>
+                    <div class="col-md-10">
+                        <input class="form-control" name="summary" value="{{ diagnosis.summary }}" readonly
+                               style="background-color: white">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 control-label">Information</label>
+                    <div class="col-md-10">
+                        <textarea class="form-control" name="info" readonly
+                                  style="background-color: white">{{ diagnosis.info }}</textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 control-label">Complications</label>
+                    <div class="col-md-10">
+                        <input class="form-control" name="complications" value="{{ diagnosis.complications }}" readonly
+                               style="background-color: white">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 control-label">Diagnosis</label>
+                    <div class="col-md-10">
+                        <textarea class="form-control" name="diagnosis" readonly
+                                  style="background-color: white">{{ diagnosis.diagnosis }}</textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
