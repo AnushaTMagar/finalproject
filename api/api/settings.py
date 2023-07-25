@@ -9,19 +9,31 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+<<<<<<< HEAD
 
 from pathlib import Path
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+=======
+import os
+from pathlib import Path
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+>>>>>>> master
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+<<<<<<< HEAD
 SECRET_KEY = 'django-insecure-im-q4)!_v(wq74kh1y-l(@%4$l8qzn4x9cdvt(yoiyop+q&v-8'
+=======
+SECRET_KEY = 'django-insecure-be$o@15*44+sc^y@y4hymy1v##sslc6+gp$uaygrvusf!8vu-z'
+>>>>>>> master
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,11 +51,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.main',
+<<<<<<< HEAD
     'apps.customadmin',
     'apps.doctors',
     'apps.patients',
     'widget_tweaks',
 
+=======
+    'widget_tweaks',
+    'apps.doctors',
+    'apps.med_tests',
+    'apps.diagnosis',
+>>>>>>> master
 ]
 
 MIDDLEWARE = [
@@ -83,7 +102,11 @@ WSGI_APPLICATION = 'api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
+<<<<<<< HEAD
         'NAME': BASE_DIR / 'db.sqlite3',
+=======
+        'NAME': os.path.join(BASE_DIR,'db.sqlite3'),
+>>>>>>> master
     }
 }
 
@@ -107,8 +130,11 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+<<<<<<< HEAD
 LOGIN_URL = '/on_fail/login'
 
+=======
+>>>>>>> master
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -140,10 +166,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
 
+<<<<<<< HEAD
+=======
+LOGIN_REDIRECT_URL='/afterlogin'
+
+>>>>>>> master
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+<<<<<<< HEAD
 
 #logger 
 LOGGING = {
@@ -167,3 +199,5 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = ''
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL =False
+=======
+>>>>>>> master

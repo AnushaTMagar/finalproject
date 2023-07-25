@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 {% extends 'hospital/admin_base.html' %}
+=======
+{% extends 'customadmin/admin_base.html' %}
+>>>>>>> master
 {% block content %}
 {%load static%}
 
@@ -45,7 +49,11 @@
         <td>{{d.mobile}}</td>
         <td>{{d.address}}</td>
         <td>{{d.department}}</td>
+<<<<<<< HEAD
         <td><a class="btn btn-primary btn-xs" href="{% url 'approve-doctor' d.id  %}"><span class="glyphicon glyphicon-ok"></span></a></td>
+=======
+        <td><a class="btn btn-primary btn-xs" href="{% url 'approve-doctor' d.id %}"><span class="glyphicon glyphicon-ok"></span></a></td>
+>>>>>>> master
         <td><a class="btn btn-danger btn-xs" href="{% url 'reject-doctor' d.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
       </tr>
       {% endfor %}

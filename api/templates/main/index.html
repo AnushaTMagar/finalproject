@@ -221,9 +221,15 @@
             <div class="collapse navbar-collapse" id="navbar-collapse" style="margin-left:-50px">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/">Home</a></li>
+<<<<<<< HEAD
                     <li><a href="{% url 'main:about' %}">About</a></li>
                     <li><a href="">Information</a></li>
                     <li><a href="{% url 'main:help' %}">Help</a></li>
+=======
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="">Information</a></li>
+                    <li><a href="{% url 'help' %}">Help</a></li>
+>>>>>>> master
                     <li><a href="/adminclick">Admin</a></li>
                     <li><a href="/doctorclick">Doctor</a></li>
                     <li><a href="/patientclick">Patient</a></li>
@@ -424,6 +430,10 @@
                     {          $("#slideShow").carousel({ interval: 5000 }); }
                 </script>
 
+<<<<<<< HEAD
+=======
+                {% include "base/footer.html" %}
+>>>>>>> master
 </body>
     
 

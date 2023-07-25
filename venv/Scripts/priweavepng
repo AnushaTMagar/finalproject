@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #!C:\Users\anush\lastproject\venv\scripts\python.exe
+=======
+#!C:\Users\anush\finalproject\venv\Scripts\python.exe
+>>>>>>> master
 
 # priweavepng
 # Weave selected channels from input PNG files into

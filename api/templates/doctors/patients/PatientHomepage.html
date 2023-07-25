@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <style>
+         *{
+        margin-top: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+        .side-menu {
+            position: fixed;
+            background: radial-gradient(#FFFFFF, #30877e);
+            width: 20vw;
+            height:400vh;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(-100%);
+        }
+
+        .side-menu.show {
+            transform: translateX(0);
+        }
+
+        @media screen and (max-width: 768px) {
+            .side-menu {
+                width: 100%;
+                height: 100%;
+                transform: translateX(-100%);
+                z-index: 999
+                
+                .0321+0.9;
+            }
+
+            .side-menu.show {
+                transform: translateX(0);
+            }
+        }
+
+        .toggle-button {
+            width: 30px;
+            height: 10px;
+            background-color: #acb0b0;
+            color: #0b0b0b;
+            border: none;
+            border-radius: 4px;
+            font-size: 10px;
+            cursor: pointer;
+            z-index: 9999;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 25px;
+            margin-top: 20px;
+        }
+        h2{
+            color: #060606;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+        h3{
+            color: #ffffff;
+            font-size: 25px;
+            margin-top: 30px;
+        }
+        h4 {
+            color: #040404;
+            font-size: 25px;
+            margin-top: 20px;
+        }
+
+
+        .side-menu .brand-name {
+            height: 10vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 40px;
+        }
+
+        .side-menu li:hover {
+            background: white;
+            color: #30877e;
+        }
+
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #fcfbfb;
+            margin-bottom: 10px;
+        }
+
+        .profile-name {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .edit-profile-button {
+            background-color: #ffffff;
+            color: #30877e;
+            border: none;
+            padding: 12px 5px;
+            font-size: 14px;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        .edit-profile-button:hover {
+            background-color: #e8e8e8;
+        }
+        .side-menu li{
+    font-size: 15px;
+    padding: 10px 40px;
+    color: #f1f1f1;
+    align-items: center;
+}
+    .side-menu li:hover{
+        background:white ;
+        color: #30877e;
+    }
+
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: auto;
+            display: flex;
+        }
+
+        .container .sidebar {
+            width: 0;
+            height: 100%;
+            background: #30877e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .container.show-sidebar .sidebar {
+            width: 20vw;
+        }
+
+        .container .header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100vw;
+            height: 10vh;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+        }
+
+        .container .header .nav {
+            width: 90%;
+            display: flex;
+            align-items: center;
+        }
+
+        .container .header .nav .search {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container .header .nav .search input[type=text] {
+            border: none;
+            background: #f1f1f1;
+            padding: 20px;
+            width: 50%;
+            border-radius: 50px;
+        }
+
+        .container .header .nav .search button {
+            width: 40px;
+            height: 40px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container .header .nav .search button img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .container .content {
+            position: relative;
+            margin-top: 10vh;
+            min-height: 90vh;
+            flex: 1; /* Updated */
+            background: #ffffff;
+            transition: margin-left 0.3s ease-in-out; /* Added transition */
+        }
+
+        .container.show-sidebar .content {
+            margin-left: 5vw;
+        }
+
+        .container .content .cards {
+            position: relative;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            z-index: 0;
+        }
+
+        .container .content .cards .card {
+            width: 290px;
+            height: 180px;
+            background: #f6f9f9;
+            margin: 10px 100px;
+           
+            justify-content: space-around;
+             border-radius: 10%;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+
+        }
+        .container .content .cards .card .icon-case img {
+            width: 30%;
+            height: 30%;
+            object-fit: cover;
+            border-radius: 10%;
+            margin-top: 10px;
+        }
+        .container .content .cards .card .view-button {
+    width: 50px;
+    height: 20px;
+    background-color: #30877e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 10px;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+
+        .container .content .content-2{
+            min-height: 60vh;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            flex-wrap: wrap;
+
+        }
+        .container .content .content-2 .personal-information{
+            min-height: 80vh;
+            flex: 5;
+            background: rgb(251, 249, 249);
+            margin: 25px 25px 25px 25px;
+            border-radius:20px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+        }
+        .forum-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+.forum-form label {
+  font-weight: bold;
+  font-size: 14px;
+  color: #808080;
+}
+
+.forum-form input,
+.forum-form textarea,
+.forum-form select {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #fffefe;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar" id="sideMenu">
+            <div class="brand-name">
+                <h1>Welcome</h1>
+                <h3> Welcome</h3>
+            </div>
+            
+            <div class="profile-container">
+                <div class="profile-image"></div>
+                <div class="profile-name">Suva Sharma</div>
+                <button class="edit-profile-button">Edit Profile</button>
+            
+            </div>
+            
+         </div>
+         
+         <div class="header">
+            <div class="nav">
+                <div class="search">
+                    <input type="text" placeholder="Search..">
+                    <button type="submit"> <img src="{% static 'patients/search.png' %}" alt="">=</button>
+                </div>
+            </div>
+         </div>
+         <button class="toggle-button" onclick="toggleSidebar()"></button>
+         <div class="content">
+            <div class="cards">
+                <div class="card">
+                    <div class="box">
+                        <h2>Doctor Lists</h2>
+                    </div>
+                    <div class = "icon-case">
+                        <img src="{% static 'patients/3774299.png' %}"alt="">
+                    </div>
+                    <button class="view-button">View</button>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <h2>Book an Appointment</h2>
+                    </div>
+                    <div class = "icon-case">
+                        <img src="book.png" alt="">
+                    </div>
+                    <button class="view-button">View</button> 
+                    
+                </div>
+                
+            </div>
+            <div class="content-2">
+                <div class="personal-information">
+                    <div class="title">
+                        <h4>Patient Information </h4>
+                    </div>
+    
+                
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+    var container = document.querySelector('.container');
+    container.classList.toggle('show-sidebar');
+    
+    var profileContainer = document.querySelector('.profile-container');
+    var editProfileButton = document.querySelector('.edit-profile-button');
+    
+    if (container.classList.contains('show-sidebar')) {
+        profileContainer.style.display = 'flex';
+        editProfileButton.style.display = 'block';
+    } else {
+        profileContainer.style.display = 'none';
+        editProfileButton.style.display = 'none';
+    }
+}
+
+    </script>
+</body>
+</html>

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 {% extends 'core/base_menu.html' %}
+=======
+{% extends 'base/base_menu.html' %}
+>>>>>>> master
 {% load static %}
 {% block header %}
     <style>
@@ -39,16 +43,26 @@
                 <div class="form-group row">
                     <label class="col-md-2 control-label">Full Name</label>
                     <div class="col-md-4">
+<<<<<<< HEAD
                         <input id="id_full_name" value="{{ patient.full_name }}" readonly class="form-control" style="background-color: white">
                     </div>
                     <label class="col-md-1 control-label">Gender</label>
+=======
+                        <input id="id_full_name" value="{{patient.get_name}}" readonly class="form-control" style="background-color: white">
+                    </div>
+                    {% comment %} <label class="col-md-1 control-label">Gender</label>
+>>>>>>> master
                     <div class="col-md-2">
                         <input id="id_gender" value="{{ patient.gender }}" readonly class="form-control" style="background-color: white">
                     </div>
                     <label class="col-md-1 control-label">Age</label>
                     <div class="col-md-1">
                         <input id="id_age" value="{{ patient.age }}" readonly class="form-control" style="background-color: white">
+<<<<<<< HEAD
                     </div>
+=======
+                    </div> {% endcomment %}
+>>>>>>> master
                 </div>
                 <div class="form-group row">
                     <label for="id_summary" class="col-md-2 control-label">Summary</label>
