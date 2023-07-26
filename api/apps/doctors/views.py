@@ -7,6 +7,7 @@ from apps.main.models import Doctor
 from apps.main.models import Patient, TestRec, Appointment, Diagnosis
 from apps.main.forms import PatientForm
 import logging
+
 logger = logging.getLogger(__name__)
 
 User = get_user_model()
@@ -83,11 +84,10 @@ def patient_dynamics_action(request, patient_id):
 
 @login_required
 def appointments_action(request):
-    patientcount=Patient.objects.all().filter(status=True,assignedDoctorId=request.user.id).count()
-    patient_id = 123
-    appointments = Appointment.objects.filter(patientId=patient_id)
-    context = {'appointments': appointments}
-    return render(request, 'doctors/appointments.html', context)
+
+    #patient=Patient.objects.get(user_id=request.user.id) #for profile picture of patient in sidebar
+    appointments=Appointment.objects.all().filter(doctorId=request.user.id)
+    return render(request,'doctors/appointments.html',{'appointments':appointments})
 
 
 @login_required
