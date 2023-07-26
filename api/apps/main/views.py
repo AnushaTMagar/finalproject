@@ -9,6 +9,10 @@ from django.contrib.auth.decorators import login_required,user_passes_test
 from datetime import datetime,timedelta,date
 from django.conf import settings
 from django.db.models import Q
+from .models import Appointment
+from django.contrib import messages
+from datetime import datetime
+from django.utils import timezone
 
 # Create your views here.
 def index_view(request):
@@ -715,31 +719,86 @@ def patient_appointment_view(request):
 
 
 
+from datetime import datetime
+
+
 @login_required(login_url='patientlogin')
 @user_passes_test(is_patient)
 def patient_book_appointment_view(request):
-    appointmentForm=forms.PatientAppointmentForm()
-    patient=models.Patient.objects.get(user_id=request.user.id) #for profile picture of patient in sidebar
-    message=None
-    mydict={'appointmentForm':appointmentForm,'patient':patient,'message':message}
-    if request.method=='POST':
-        appointmentForm=forms.PatientAppointmentForm(request.POST)
+    appointmentForm = forms.PatientAppointmentForm()
+    patient = models.Patient.objects.get(user_id=request.user.id)  # for the profile picture of the patient in the sidebar
+    message = None
+    mydict = {'appointmentForm': appointmentForm, 'patient': patient, 'message': message}
+
+    if request.method == 'POST':
+        appointmentForm = forms.PatientAppointmentForm(request.POST)
         if appointmentForm.is_valid():
-            print(request.POST.get('doctorId'))
-            desc=request.POST.get('description')
+            doctor_id = request.POST.get('doctorId')
+            description = request.POST.get('description')
 
-            doctor=models.Doctor.objects.get(user_id=request.POST.get('doctorId'))
+            # Convert the datetime string to a Python datetime object
+            appointment_datetime_str = request.POST.get('appointmentDateTime')
+            appointment_datetime = datetime.strptime(appointment_datetime_str, '%Y-%m-%dT%H:%M')
+            print(appointment_datetime)
+            doctor = models.Doctor.objects.get(user_id=doctor_id)
             
-            appointment=appointmentForm.save(commit=False)
-            appointment.doctorId=request.POST.get('doctorId')
-            appointment.patientId=request.user.id #----user can choose any patient but only their info will be stored
-            appointment.doctorName=models.User.objects.get(id=request.POST.get('doctorId')).first_name
-            appointment.patientName=request.user.first_name #----user can choose any patient but only their info will be stored
-            appointment.status=False
-            appointment.save()
-        return HttpResponseRedirect('patient-view-appointment')
-    return render(request,'patients/patient_book_appointment.html',context=mydict)
+            print(appointment_datetime)
+            if appointment_datetime is None:
+                print("Invalid date and time format. Please select a valid date and time.1")
+                messages.error(request, 'Invalid date and time format. Please select a valid date and time.')
+                
+                mydict['message'] = message
+                return render(request, 'patients/patient_book_appointment.html', context=mydict)
 
+            try:
+                appointment_datetime = datetime.strptime(appointment_datetime_str, '%Y-%m-%dT%H:%M')
+            except ValueError:
+                print("Invalid date and time format. Please select a valid date and time.2")
+                messages.error(request, 'Invalid date and time format. Please select a valid date and time.')
+                
+                mydict['message'] = message
+                return render(request, 'patients/patient_book_appointment.html', context=mydict)
+
+            # Check if the selected time slot is already booked
+            if Appointment.objects.filter(doctorName=doctor.user.first_name, appointmentDate=appointment_datetime).exists():
+                print("This time slot is already booked. Please select a different time slot.")
+                messages.error(request, 'This time slot is already booked. Please select a different time slot.')
+                
+                mydict['message'] = message
+                return render(request, 'patients/patient_book_appointment.html', context=mydict)
+
+            # Check if there is any appointment within one hour before the selected time slot
+            start_time = appointment_datetime - timedelta(hours=1)
+            end_time = appointment_datetime
+
+            current_time = start_time
+            while current_time < end_time:
+                if Appointment.objects.filter(doctorName=doctor.user.first_name, appointmentDate=current_time).exists():
+                    error_message = "An appointment is already booked within one hour before this time slot. Please select a different time slot."
+                   
+                    print("An appointment is already booked within one hour before this time slot. Please select a different time slot.")
+                    messages.error(request, 'An appointment is already booked within one hour before this time slot. Please select a different time slot.')
+        
+                    mydict['message'] = message
+                    return render(request, 'patients/patient_book_appointment.html', context=mydict)
+                current_time += timedelta(minutes=1)
+            
+
+            appointment = appointmentForm.save(commit=False)
+            appointment.doctorId = doctor_id
+            appointment.patientId = request.user.id
+            appointment.doctorName = doctor.user.first_name
+            appointment.patientName = request.user.first_name
+            appointment.status = False
+            appointment.appointmentDate = appointment_datetime  # Assign the datetime object to the appointmentDate field
+            appointment.save()
+
+            return HttpResponseRedirect('patient-view-appointment')
+        else:
+            message = "Form is not valid."
+    
+    mydict['message'] = message
+    return render(request, 'patients/patient_book_appointment.html', context=mydict)
 
 
 def patient_view_doctor_view(request):

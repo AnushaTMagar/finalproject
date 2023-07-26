@@ -74,7 +74,10 @@
               {% render_field appointmentForm.doctorId class="form-control" placeholder="doctor" %}
             </div>
             
-
+            <div class="form-group">
+              <label for="{{ appointmentForm.appointmentDateTime.id_for_label }}">Appointment Date and Time</label>
+              <input type="datetime-local" class="form-control" name="{{ appointmentForm.appointmentDateTime.name }}" value="{{ appointmentForm.appointmentDateTime.value|date:'Y-m-d\TH:i' }}" required>
+            </div>
 
 
           </div>

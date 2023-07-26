@@ -60,6 +60,7 @@ class AppointmentForm(forms.ModelForm):
 
 class PatientAppointmentForm(forms.ModelForm):
     doctorId=forms.ModelChoiceField(queryset=models.Doctor.objects.all().filter(status=True),empty_label="Doctor Name and Department", to_field_name="user_id")
+    appointmentDateTime = forms.DateTimeField(label="Appointment Date and Time", widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}))
     class Meta:
         model=models.Appointment
         fields=['description','status']
