@@ -13,7 +13,10 @@ from .models import Appointment
 from django.contrib import messages
 from datetime import datetime
 from django.utils import timezone
-
+from django.views.decorators.csrf import csrf_exempt
+import requests
+from django.http import JsonResponse
+import json
 # Create your views here.
 def index_view(request):
     if request.user.is_authenticated:
@@ -897,5 +900,31 @@ def contactus_view(request):
 #---------------------------------------------------------------------------------
 
 
+@csrf_exempt
+def verify_payment(request):
+    if request.method == 'POST':
+        payload = json.loads(request.body)
+        print(payload['token'])
+        token = payload['token']
+        amount = payload['amount']
 
+        url = "https://khalti.com/api/v2/payment/verify/"
+        payload = {
+        "token": token,
+        "amount": amount
+        }
+        headers = {
+        "Authorization": "Key test_secret_key_120a665657604a6ba85c8bdb58cfdf66"
+        }
 
+        response = requests.request("POST", url, headers=headers, data=payload)
+        
+        response_data = json.loads(response.text)
+        status_code = str(response.status_code)
+
+        if status_code == '400':
+            response = JsonResponse({'status':'false','message':response_data['details']}, status=500)
+            return response
+
+      
+        return JsonResponse(f"Payment Done !! With IDX. {response_data['idx']}",safe=False)

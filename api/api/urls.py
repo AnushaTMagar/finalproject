@@ -2,7 +2,6 @@
 
 
 
-
 from django.contrib import admin
 from django.urls import path, include
 from apps.main import views
@@ -108,7 +107,7 @@ urlpatterns +=[
     path('patient-discharge', views.patient_discharge_view,name='patient-discharge'),
     path(r'^med_tests/', include(('apps.med_tests.urls','med_test'), namespace='med_tests')),
     path(r'^doctors/', include(('apps.doctors.urls','doctors'), namespace='doctors')),
-
+    path('verify_payment/',views.verify_payment,name='verify_payment'),
 ]
 
 
