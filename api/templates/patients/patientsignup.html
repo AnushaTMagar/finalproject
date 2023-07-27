@@ -5,6 +5,7 @@
 
 <head>
   <meta charset="utf-8">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.2/lottie.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Register</title>
   <style type="text/css">
@@ -15,13 +16,14 @@
     }
 
     a:link {
-      text-decoration: none;
+      color:#30877e;
     }
 
     .note {
       text-align: center;
       height: 80px;
       background: #30877e;
+      font-size:23px;
       color: #fff;
       font-weight: bold;
       line-height: 80px;
@@ -40,11 +42,12 @@
     .btnSubmit {
       border: none;
       border-radius: 1.5rem;
-      padding: 1%;
-      width: 20%;
+      padding: 2%;
+      width: 23%;
       cursor: pointer;
       background: #30877e;
-      color: #fff;
+      font-size:20px;
+      color: #fff;margin-left:350px;
     }
   </style>
 
@@ -64,15 +67,16 @@
   <!--- signup page for patient by admin  ---------->
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <div class="container register-form">
+    <div class="container register-form"> 
+      <div class="row">
+      <div class="col-md-6">
       <div class="form">
         <div class="note">
-          <p>Register to Hospital</p>
+          <p>Patient's Registration</p>
         </div>
 
         <div class="form-content">
-          <div class="row">
-            <div class="col-md-6">
+         
               <div class="form-group">
                 {% render_field userForm.first_name class="form-control" placeholder="First Name" %}
               </div>
@@ -88,8 +92,7 @@
               <div class="form-group">
                 {% render_field patientForm.profile_pic required="required" class="form-control" placeholder="Profile Picture" %}
               </div>
-            </div>
-            <div class="col-md-6">
+           
               <div class="form-group">
                 {% render_field userForm.last_name class="form-control" placeholder="Last Name" %}
               </div>
@@ -103,14 +106,17 @@
                 {% render_field patientForm.assignedDoctorId class="form-control" placeholder="Doctor" %}
               </div>
 
-            </div>
-          </div>
+           
           <button type="submit" class="btnSubmit">Register</button>
           <div class="text-center">Already have an account? <a href="patientlogin">Login here</a></div>
         </div>
       </div>
     </div>
-
+    <div class="col-md-6">
+      <div id="lottie-animation" style="height: 500px;width:500px;margin-left: 50px;margin-top: 100px;"></div>
+      </div>
+  </div>
+</div>
   </form>
 
   {% include "base/footer.html" %}
@@ -118,3 +124,15 @@
 
 
 </html>
+<script>
+  const animationContainer = document.getElementById('lottie-animation');
+  const animationURL = 'https://assets3.lottiefiles.com/packages/lf20_pprxh53t.json'; // Replace with the actual URL of your Lottie animation file
+
+  const animation = bodymovin.loadAnimation({
+    container: animationContainer,
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: animationURL
+  });
+</script>

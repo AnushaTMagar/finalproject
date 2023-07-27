@@ -44,12 +44,13 @@
         }
 
         a {
-                        text-decoration: underline;
+                      
                         color: #555;
                     }
 
                     p {
-                        margin-top: 20px;
+                        margin-top: 15px;
+                        margin-left: 15px;
                         font-size: medium;
                         color: #555;
                     }
@@ -193,19 +194,69 @@
                     }
 
                     .offer {
-                        background: radial-gradient(#FFFFFF, #ebf2fc);
+                        background: radial-gradient(#FFFFFF, #D0F3F0);
                         margin-top: 20px;
                         height: 600px;
                         width: 100vw; 
                        /* margin-left: 10px; */
                         padding: 20px 0;
                     }
+                    
+                    /* Style the dropdown button */
+                    .dropbtn {
+                      background-color:#30877e; 
+                      color: white;
+                      padding: 12px;
+                      font-size: 16px;
+                      border: none;
+                      cursor: pointer;
+                    }
+                    
+                    /* On hover, add a background color */
+                    .dropbtn:hover {
+                      background-color:#0F5E57
+                    }
+                    
+                    /* The container <div> - needed to position the dropdown content */
+                    .dropdown {
+                      position: relative;
+                      display: inline-block;
+                    }
+                    
+                    /* Dropdown Content (Hidden by Default) */
+                    .dropdown-content {
+                      display: none;
+                      position: absolute;
+                      background-color: #f9f9f9;
+                      min-width: 160px;
+                      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                      z-index: 1;
+                    }
+                    
+                    /* Links inside the dropdown */
+                    .dropdown-content a {
+                      color: black;
+                      padding: 12px 16px;
+                      text-decoration: none;
+                      display: block;
+                    }
+                    
+                    /* Change color of dropdown links on hover */
+                    .dropdown-content a:hover {
+                      background-color: #f1f1f1;
+                    }
+                    
+                    /* Show the dropdown menu on hover */
+                    .dropdown:hover .dropdown-content {
+                      display: block;
+                    }
+                    
                   
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background:#ebf2fc;">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background: #E5F5F3">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -215,20 +266,24 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">MEDREC</a>
+                <a class="navbar-brand" href="/" style=" color: #30877e;  font-size: xx-large;">MEDREC</a>
             </div>
 
             <div class="collapse navbar-collapse" id="navbar-collapse" style="margin-left:-50px">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="{% url 'about' %}">About</a></li>
-                    <li><a href="">Information</a></li>
-                    <li><a href="{% url 'help' %}">Help</a></li>
-                    <li><a href="/adminclick">Admin</a></li>
-                    <li><a href="/doctorclick">Doctor</a></li>
-                    <li><a href="/patientclick">Patient</a></li>
-
-                    {% comment %} <li><a href="#" data-toggle="modal" data-target="#login-modal">Sign In</a></li> {% endcomment %}
+                    <li><a href="/" style=" color: #30877e; ">Home</a></li>
+                    <li><a href="{% url 'about' %}" style=" color: #30877e; ">About</a></li>
+                    <li><a href="" style=" color: #30877e; ">Information</a></li>
+                    <li><a href="{% url 'help' %}"style=" color: #30877e; ">Help</a></li>
+                    <li><div class="dropdown">
+                        <button class="dropbtn">You are..</button>
+                        <div class="dropdown-content">
+                          <a href="/adminclick">Admin</a>
+                          <a href="/doctorclick">Doctor</a>
+                          <a href="/patientclick">Patient</a>
+                        </div>
+                      </div></li>
+                                        {% comment %} <li><a href="#" data-toggle="modal" data-target="#login-modal">Sign In</a></li> {% endcomment %}
                 </ul>
             </div>
         </div>
@@ -240,16 +295,17 @@
         <div class="row">
             <div class="col-2">
                 <!-- <p>About us</p> -->
-                <h1>MEDREC</h1>
-                <smallh>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae hendrerit mauris. Quisque ac
-                    feugiat arcu, at fermentum dui. Integer ut lacinia nisl. Vestibulum ante ipsum primis in faucibus
-                    orci luctus et ultrices posuere cubilia curae; Proin lobortis risus at ex aliquet, vitae luctus
-                    dui vulputate. Nunc interdum leo nec enim interdum, vitae tincidunt risus 
+                <h1 style=" color: #30877e; ">MEDREC</h1>
+                <smallh > Med-Rec digitalizes health records in health facilities and 
+                    its instant availability in the form of electronic records anywhere and anytime.
+                     It facilitates you with an appointment booking system and its payment.
+                    tools used
+                    
                  </small>
-                    <a href="" class="btn">Sign in </a>
+                  
 
             </div>
-            <div class="col-2"  style="margin-top:50px; width: 500px;height:300px;">
+            <div class="col-2"  style="margin-top:50px; width: 600px;height:450px;">
                 <img src="{% static 'img/hi.svg' %}" class="offer-img">
             </div>
         </div>

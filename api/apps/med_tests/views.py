@@ -49,7 +49,9 @@ def create_action(request, patient_id):
 @login_required
 def show_action(request, test_id):
     test_rec = TestRec.objects.get(pk=test_id)
-
+    votes_queryset = TestRec.objects.all()
+    votes_list = list(votes_queryset.values_list('results', flat=True))
+    test_name = list(votes_queryset.values_list('test_name', flat=True))
     patient = test_rec.patient
     
     
@@ -59,7 +61,9 @@ def show_action(request, test_id):
         {
             'test_rec': test_rec,
             'patient': patient,
-            
+             'test_data' :json.dumps(votes_list),
+             'test_name' :json.dumps(test_name),
+
             
         }
     )
@@ -67,8 +71,10 @@ def show_action(request, test_id):
 
 @login_required
 def delete_action(request, test_id):
+    print("delete init")
     test_rec = TestRec.objects.get(pk=test_id)
     test_rec.delete()
+     
     return redirect(reverse('patients:list'))
 
 

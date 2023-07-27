@@ -5,7 +5,7 @@
 <br><br><br><br>
 <div class="container">
   <div class="row">
-    <div class="panel panel-primary col-md-5" style="margin-left:2%;">
+    <div class="panel panel-primary col-md-5" style="margin-left:2%;border-color:#30877e;">
       <div class="panel-heading" style="text-align:center; background: #30877e;">
         <h6 class="panel-title">Recent Doctors</h6>
       </div>
@@ -35,7 +35,7 @@
       </table>
     </div>
 
-    <div class="panel panel-primary col-md-5" style="margin-left:5%;">
+    <div class="panel panel-primary col-md-5" style="margin-left:5%;border-color:#30877e;">
       <div class="panel-heading" style="text-align:center; background: #30877e;">
         <h6 class="panel-title">Recent Patient</h6>
       </div>
@@ -57,7 +57,7 @@
           <td>{{p.mobile}}</td>
           <td>{{p.address}}</td>
           {%if p.status%}
-          <td> <span class="label label-primary">Admitted</span></td>
+          <td> <span class="label label-primary">Registered</span></td>
           {% else %}
           <td> <span class="label label-success">On Hold</span></td>
           {% endif %}

@@ -152,6 +152,7 @@ def update_action(request):
 @login_required
 def delete_action(request, patient_id):
     if request.method == 'POST':
+        print('delete init')
         patient = Patient.objects.get(pk=patient_id)
         patient.delete()
         return HttpResponseRedirect(reverse('doctors:list'))

@@ -86,17 +86,50 @@
                     </tr>
                 </thead>
                 <tbody id="testTableBody">
-                    {% for indicator in indicators %}
+                    
                     <tr>
-                        <td>{{ indicator.test_name }}</td>
-                        <td>{{ indicator.normal_value }}</td>
-                        <td>{{ indicator.results }}</td>
-                        <td>{{ indicator.units }}</td>
+                        <td>{{ test_rec.test_name }}</td>
+                        <td>{{ test_rec.normal_value }}</td>
+                        <td>{{ test_rec.results }}</td>
+                        <td>{{ test_rec.units }}</td>
                     </tr>
                     
-                    {% endfor %}
+                   
                 </tbody>
             </table>
         </div>
     </div>
+    <div>
+        <canvas id="myChart"></canvas>
+         </div>
+           <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   
+       <script>
+           $(document).ready(function(){
+               const ctx = document.getElementById('myChart');
+               // var test = JSON.parse(document.getElementById('test-data').textContent);
+               var test = {{ test_data|safe }};
+               var name = {{ test_name|safe }};
+               console.log('test')
+               console.log(test);
+   new Chart(ctx, {
+     type: 'bar',
+     data: {
+       labels: name,
+       datasets: [{
+         label: '# of Votes',
+         data:  test,
+         borderWidth: 1
+       }]
+     },
+     options: {
+       scales: {
+         y: {
+           beginAtZero: true
+         }
+       }
+     }
+   }); 
+           })
+       </script>
 {% endblock %}
