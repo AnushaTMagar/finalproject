@@ -1,0 +1,473 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hello",
+        "Hey",
+        "Good day",
+        "Greetings",
+        "how are you"
+      ],
+      "response": "Hello! How can I assist you today?"
+    },
+    {
+      "tag": "appointment",
+      "patterns": [
+        "I'd like to schedule an appointment",
+        "How can I book an appointment?",
+        "Can you help me set up a consultation?",
+        "I need to see a doctor",
+        "When can I come in for a check-up?",
+        "I want to book appointment",
+        "I want appointment"
+      ],
+      "response": "Sure! I can help you with that. Please click this link <a href='http://127.0.0.1:8000/appointment_list'>here </a> and fill up the form with neccessary details."
+    },
+    {
+      "tag": "symptoms_covid19",
+      "patterns": [
+        "What are the common symptoms of COVID-19?",
+        "Do I have COVID-19?",
+        "What are the signs of COVID-19 infection?",
+        "I'm feeling unwell, could it be COVID-19?",
+        "Symptoms covid 19",
+        "How can I know if I'm infected with COVID-19?"
+      ],
+      "response": "Common symptoms of COVID-19 include fever, cough, and shortness of breath. If you experience these symptoms, seek medical attention."
+    },
+    {
+      "tag": "headache",
+      "patterns": [
+        "I have a headache",
+        "How to relieve a headache?",
+        "What are the causes of headaches?",
+        "How can I treat a migraine?",
+        "Frequent headaches",
+        "symptoms headache"
+      ],
+      "response": "Headaches can have various causes, including stress, tension, and migraines. For relief, try resting in a quiet, dark room and taking pain relievers as needed."
+    },
+    {
+      "tag": "insurance",
+      "patterns": [
+        "Does the hospital accept insurance?",
+        "Which insurance providers are accepted here?",
+        "Can I use my health insurance for medical services?",
+        "Is my insurance plan accepted for surgery?",
+        "Do you have any information about insurance coverage?"
+      ],
+      "response": "Yes, we accept various insurance providers. Please provide your insurance details, at the time of consultation"
+    },
+    {
+      "tag": "fever",
+      "patterns": [
+        "I have a fever",
+        "How to reduce fever?",
+        "What temperature is considered a fever?",
+        "Fever in children",
+        "Persistent high fever",
+        "symptom fever",
+        "prevention fever"
+      ],
+      "response": "Fever is a common symptom of an underlying infection or illness. You can try taking fever-reducing medication and rest. If the fever persists or worsens, consult a healthcare professional."
+    },
+    {
+      "tag": "diabetes",
+      "patterns": [
+        "What are the symptoms of diabetes?",
+        "How is diabetes diagnosed?",
+        "Can diabetes be managed with diet?",
+        "Insulin and diabetes",
+        "What are the long-term effects of diabetes?",
+        "symptom diabetes",
+        "prevention diabetes"
+      ],
+      "response": "Diabetes symptoms include increased thirst, frequent urination, and fatigue. It can be diagnosed through blood tests. Proper management includes diet, exercise, and medications like insulin if needed."
+    },
+    {
+      "tag": "prescription_refill",
+      "patterns": [
+        "I need a prescription refill",
+        "How can I renew my prescription?",
+        "My medication is running out",
+        "Prescription renewal process",
+        "Expired prescription"
+      ],
+      "response": "To refill a prescription, please visit our Pharmacy."
+    },
+    {
+      "tag": "rash",
+      "patterns": [
+        "I have a rash",
+        "What causes skin rashes?",
+        "How to treat an itchy rash?",
+        "Rash on hands",
+        "Persistent skin rash"
+      ],
+      "response": "Skin rashes can have various causes, including allergies, infections, or irritants. For relief, avoid scratching, and apply over-the-counter creams or ointments. If it persists or worsens, seek medical advice."
+    },
+    {
+      "tag": "dental_emergency",
+      "patterns": [
+        "I have a dental emergency",
+        "Toothache",
+        "Chipped tooth",
+        "Lost filling",
+        "Emergency dental care",
+        "dental appointment booking"
+      ],
+      "response": "Dental emergencies like toothaches or chipped teeth require prompt attention. Please contact our dental department for immediate assistance <a href='http://127.0.0.1:8000/appointment_list'>here</a>."
+    },
+    {
+      "tag": "blood_pressure",
+      "patterns": [
+        "How to measure blood pressure?",
+        "High blood pressure remedies",
+        "Managing hypertension",
+        "Blood pressure medication",
+        "Blood pressure monitoring"
+      ],
+      "response": "To measure blood pressure, use a blood pressure monitor. Managing hypertension involves lifestyle changes, like a healthy diet and exercise, and taking prescribed medications as directed."
+    },
+    {
+      "tag": "cough",
+      "patterns": [
+        "I have a persistent cough",
+        "How to soothe a cough?",
+        "Dry cough remedies",
+        "Coughing at night",
+        "Productive cough"
+      ],
+      "response": "A persistent cough can be caused by various factors, including infections or allergies. Stay hydrated, use lozenges, and avoid irritants. If it persists or worsens, consult a healthcare provider."
+    },
+    {
+      "tag": "allergies",
+      "patterns": [
+        "How to manage allergies?",
+        "Seasonal allergies",
+        "Common allergens",
+        "Allergy testing",
+        "Antihistamines for allergies"
+      ],
+      "response": "Managing allergies includes avoiding triggers, taking antihistamines, and considering allergy testing to identify specific allergens for targeted treatment."
+    },
+    {
+      "tag": "anxiety",
+      "patterns": [
+        "How to cope with anxiety?",
+        "Dealing with panic attacks",
+        "Anxiety management techniques",
+        "Excessive worrying",
+        "Feeling anxious"
+      ],
+      "response": "Coping with anxiety involves relaxation techniques, mindfulness, and seeking support from mental health professionals. If you experience severe anxiety or panic attacks, please seek immediate help."
+    },
+    {
+      "tag": "diet_nutrition",
+      "patterns": [
+        "What is a balanced diet?",
+        "Nutrition tips for better health",
+        "Healthy eating habits",
+        "Weight loss diet",
+        "Foods to avoid"
+      ],
+      "response": "A balanced diet includes a variety of fruits, vegetables, lean proteins, and whole grains. Avoid excessive sugar and processed foods. For personalized nutrition advice, consult a dietitian."
+    },
+    {
+      "tag": "pregnancy",
+      "patterns": [
+        "Pregnancy care",
+        "First-trimester symptoms",
+        "Prenatal vitamins",
+        "Pregnancy diet",
+        "Second-trimester precautions"
+      ],
+      "response": "During pregnancy, prenatal care is essential. Take prenatal vitamins, eat a nutritious diet, and attend regular check-ups with your healthcare provider for a healthy pregnancy journey."
+    },
+    {
+      "tag": "vomiting",
+      "patterns": [
+        "I'm vomiting",
+        "How to stop vomiting?",
+        "Nausea and vomiting",
+        "Vomiting after eating",
+        "Persistent vomiting",
+        "vomiting symptoms",
+        "vomiting prevention"
+      ],
+      "response": "Vomiting can be caused by various factors, including infections, food poisoning, or other illnesses. Rest, stay hydrated, and avoid solid foods until the vomiting stops. If it continues, seek medical attention."
+    },
+    {
+      "tag": "influenza",
+      "patterns": [
+        "What are the symptoms of the flu?",
+        "Flu prevention tips",
+        "Influenza treatment",
+        "Flu shot availability",
+        "High fever and body aches",
+        "influenza symptoms",
+        "influenza prevention"
+      ],
+      "response": "Flu symptoms include fever, body aches, sore throat, and fatigue. To prevent the flu, consider getting a flu shot. If you suspect the flu, rest and stay hydrated."
+    },
+    {
+      "tag": "COVID_travel",
+      "patterns": [
+        "Is it safe to travel during COVID-19?",
+        "Travel restrictions due to COVID-19",
+        "International travel guidelines",
+        "Flying during the pandemic",
+        "Quarantine after travel"
+      ],
+      "response": "Travel during COVID-19 carries risks. Check travel advisories, restrictions, and quarantine guidelines before making plans. Consider your health and safety before traveling."
+    },
+    {
+      "tag": "insomnia",
+      "patterns": [
+        "I have trouble sleeping",
+        "How to improve sleep quality?",
+        "Insomnia remedies",
+        "Difficulty falling asleep",
+        "Waking up frequently",
+        "insomnia prevention"
+      ],
+      "response": "To improve sleep quality, maintain a regular sleep schedule, create a relaxing bedtime routine, and avoid caffeine and electronics before bed. If insomnia persists, consult a healthcare professional."
+    },
+    {
+      "tag": "vaccination_child",
+      "patterns": [
+        "Childhood vaccination schedule",
+        "Vaccination for infants",
+        "Are vaccines necessary for kids?",
+        "Vaccine side effects in children",
+        "Vaccination benefits for children"
+      ],
+      "response": "Vaccinations are essential to protect children from serious illnesses. Follow the recommended childhood vaccination schedule to ensure your child's health and immunity."
+    },
+    {
+      "tag": "stomach_pain",
+      "patterns": [
+        "I have stomach pain",
+        "How to relieve stomach ache?",
+        "Causes of abdominal pain",
+        "Stomach pain after eating",
+        "Persistent stomach discomfort"
+      ],
+      "response": "Stomach pain can have various causes, including indigestion, gas, or infections. Consider antacids or warm compresses for relief. If pain persists or worsens, seek medical advice."
+    },
+    {
+      "tag": "depression",
+      "patterns": [
+        "How to deal with depression?",
+        "Signs of depression",
+        "Managing low mood",
+        "Depression support",
+        "Feeling hopeless"
+      ],
+      "response": "Dealing with depression may involve therapy, medication, and self-care practices. Reach out to mental health professionals for guidance and support."
+    },
+    {
+      "tag": "weight_management",
+      "patterns": [
+        "How to manage weight?",
+        "Losing weight safely",
+        "Healthy weight goals",
+        "Weight gain tips",
+        "Weight loss challenges",
+        "How do I lose weight"
+      ],
+      "response": "Weight management involves a balanced diet and regular exercise. Set realistic weight goals and seek support from healthcare providers or nutritionists."
+    },
+    {
+      "tag": "cold",
+      "patterns": [
+        "I have a cold",
+        "Common cold remedies",
+        "How to soothe a sore throat?",
+        "Runny nose",
+        "Persistent cold symptoms"
+      ],
+      "response": "A cold is a viral infection with symptoms like a runny nose, sore throat, and cough. Get plenty of rest, stay hydrated, and use over-the-counter remedies for relief."
+    },
+    {
+      "tag": "elderly_care",
+      "patterns": [
+        "Elderly care services",
+        "Caring for aging parents",
+        "Senior health check-ups",
+        "Mobility aids for seniors",
+        "Memory care for the elderly"
+      ],
+      "response": "We provide various elderly care services, including health check-ups and memory care programs. Explore our offerings to support your aging loved ones."
+    },
+    {
+      "tag": "sunburn",
+      "patterns": [
+        "I have sunburn",
+        "Sunburn relief",
+        "Treating sunburned skin",
+        "How to prevent sunburn?",
+        "Severe sunburn"
+      ],
+      "response": "To relieve sunburn, use cool compresses, moisturize, and stay hydrated. Avoid further sun exposure and protect your skin with sunscreen to prevent sunburn."
+    },
+    {
+      "tag": "menstrual_irregularity",
+      "patterns": [
+        "Irregular menstrual periods",
+        "Causes of late periods",
+        "Heavy menstrual bleeding",
+        "Missed period",
+        "Menstrual pain relief"
+      ],
+      "response": "Menstrual irregularities can have various causes, including hormonal imbalances or underlying health conditions. If you experience significant changes or concerns, consult a healthcare provider."
+    },
+    {
+      "tag": "chiropractic_care",
+      "patterns": [
+        "What is chiropractic care?",
+        "Benefits of chiropractic treatment",
+        "Chiropractic for back pain",
+        "How does chiropractic adjustment work?",
+        "Is chiropractic safe?"
+      ],
+      "response": "Chiropractic care is a non-invasive therapy focusing on the musculoskeletal system. It can help with back pain, neck pain, and joint issues. Chiropractic adjustments aim to restore alignment and function."    
+    },
+    {
+      "tag": "mental_health_counseling",
+      "patterns": [
+        "Do you offer mental health counseling?",
+        "Benefits of counseling",
+        "How to find a suitable counselor?",
+        "Counseling for anxiety and depression",
+        "Counseling for children"
+      ],
+      "response": "Yes, we offer mental health counseling services. Counseling can provide support and guidance for various concerns, including anxiety, depression"
+    },
+    {
+      "tag": "telemedicine",
+      "patterns": [
+        "What is telemedicine?",
+        "How does telemedicine work?",
+        "Is telemedicine covered by insurance?",
+        "What type of healthcare services can I get through telemedicine?",
+        "How to schedule a telemedicine appointment?"
+      ],
+      "response": "Telemedicine allows remote access to healthcare through digital communication tools. Patients can consult doctors, receive diagnoses, and get medical advice without visiting a physical clinic. Many insurance plans cover telemedicine services. You can access a variety of healthcare services, including consultations, follow-ups, and prescription refills. To schedule a telemedicine appointment, please contact our healthcare staff."
+    },
+    {
+      "tag": "working_hours",
+      "patterns": [
+        "What are the clinic's working hours?",
+        "When does the medical center open?",
+        "What time does the hospital close?",
+        "Are you open on weekends?",
+        "What are the operating hours?"
+      ],
+      "response": "We are open 24/7 but our OPD and online consultation is based on Doctor's availability."
+    },
+    {
+      "tag": "payment_methods",
+      "patterns": [
+        "What payment methods do you accept?",
+        "Can I pay with a credit card?",
+        "What are the accepted payment options?",
+        "Is there an option for online payment?"
+      ],
+      "response": "We accept KHALTI, an online payment options for your convenience."
+    },
+    {
+      "tag": "pediatrics_department",
+      "patterns": [
+        "Are there any pediatricians available?",
+        "When is the pediatric department open?",
+        "Can you tell me the working hours of the pediatric clinic?",
+        "Are there any child specialists?",
+        "What time do pediatricians see patients?",
+        "I want to book appointment in pediatrics",
+        "pedia department",
+        "Pediatric Booking"
+      ],
+      "response": "Our pediatrcians are Dr. Prajwal and Dr. Manish, and you have to check for their availability <a href='http://127.0.0.1:8000/ourdoctors'>here</a>."
+    },
+    {
+      "tag": "emergency_department",
+      "patterns": [
+        "Is the emergency department open 24/7?",
+        "What are the working hours of the emergency room?",
+        "Can I visit the ER for urgent medical needs?",
+        "Are there any doctors available in the emergency department?",
+        "Is the emergency room staffed at all times?"
+      ],
+      "response": "Yes, our emergency department is open 24/7 to provide care for urgent medical needs. We have a team of skilled doctors and medical staff available at all times to address emergency situations and provide immediate medical attention."
+    },
+    {
+      "tag": "obstetrics_gynecology",
+      "patterns": [
+        "When can I schedule an appointment with an OB-GYN?",
+        "Are there any female gynecologists available?",
+        "What are the working hours of the obstetrics department?",
+        "Can I visit the gynecology clinic without an appointment?",
+        "Is there an OB-GYN specialist for pregnancy care?",
+        "I want to book appointment in gyno",
+        "gyno department",
+        "gynocology department",
+        "Gyno Booking"
+      ],
+      "response": "We have Dr. Udeshya and Dr. Aadarsh in OB-GYN and you have to check for their availability <a href='http://127.0.0.1:8000/appointment_list'>here</a>."
+    },
+    {
+      "tag": "orthopedics_department",
+      "patterns": [
+        "When can I see an orthopedic specialist?",
+        "Are there any orthopedic surgeons available today?",
+        "What are the operating hours of the orthopedics clinic?",
+        "Can I visit the orthopedic department for joint pain?",
+        "Is there an orthopedic specialist for sports injuries?",
+        "I want to book appointment in orthopedics or ortho",
+        "orthopedic department",
+        "ortho department",
+        "orthopedic Booking"
+      ],
+      "response": "We have Dr. Shrishab and Dr. Sagar in Ortho and you have to check for their availability <a href='http://127.0.0.1:8000/appointment_list'>here</a>."
+    },
+    {
+      "tag": "dermatology_department",
+      "patterns": [
+        "When can I see a dermatologist?",
+        "Are there any available appointments with a skin specialist?",
+        "What are the working hours of the dermatology clinic?",
+        "Can I visit the dermatology department for skin conditions?",
+        "Is there a dermatologist for acne treatment?",
+        "I want to book appointment in dermatology",
+        "skin department",
+        "dermatology department",
+        "dermatology Booking"
+        
+      ],
+      "response": "Dr. Bibash is our Skin Speacialist, please check for his availability <a href='http://127.0.0.1:8000/appointment_list'>here</a>."
+    },
+    {
+      "tag": "cardiology_department",
+      "patterns": [
+        "When can I see a cardiologist?",
+        "Are there any heart specialists available?",
+        "What are the working hours of the cardiology clinic?",
+        "Can I visit the cardiology department for heart-related concerns?",
+        "Is there a cardiologist for heart disease treatment?",
+        "I want to book appointment in cardiology",
+        "cardiology department",
+        "heart department",
+        "cardiology Booking"
+      ],
+      "response": "Our cardiology department is equipped with experienced cardiologists who specialize in the diagnosis and treatment of heart-related concerns and heart disease. Dr. Bhagwan Koirala and Dr. Sanduk Ruit are our Heart Specialist. Please check for their availability <a href='http://127.0.0.1:8000/appointment_list'>here</a>"
+    },
+    {
+      "tag":"name",
+      "patterns": ["what is your name","what should i call you","what's your name?","who are you?","can you tell me your name","what do you do?"],
+      "response":["I am Medbot your medical assistant"]
+     }
+  ]
+}

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'apps.doctors',
     'apps.med_tests',
     'apps.diagnosis',
+    'apps.chatbot',
 ]
 
 MIDDLEWARE = [

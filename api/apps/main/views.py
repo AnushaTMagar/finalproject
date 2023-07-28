@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect
 from django.urls import reverse
+
+from apps.chatbot.chat import get_response
 from . import forms,models
 from django.db.models import Sum
 from django.contrib.auth.models import Group
@@ -448,8 +450,8 @@ def discharge_patient_view(request,pk):
         pDD.OtherCharge=int(request.POST['OtherCharge'])
         pDD.total=(int(request.POST['roomCharge'])*int(d))+int(request.POST['doctorFee'])+int(request.POST['medicineCost'])+int(request.POST['OtherCharge'])
         pDD.save()
-        return render(request,'patients/aatient_final_bill.html',context=patientDict)
-    return render(request,'patients/aatient_generate_bill.html',context=patientDict)
+        return render(request,'patients/patient_final_bill.html',context=patientDict)
+    return render(request,'patients/patient_generate_bill.html',context=patientDict)
 
 
 
@@ -489,7 +491,7 @@ def download_pdf_view(request,pk):
         'OtherCharge':dischargeDetails[0].OtherCharge,
         'total':dischargeDetails[0].total,
     }
-    return render_to_pdf('doctors/aownload_bill.html',dict)
+    return render_to_pdf('doctors/download_bill.html',dict)
 
 
 
@@ -928,3 +930,15 @@ def verify_payment(request):
 
       
         return JsonResponse(f"Payment Done !! With IDX. {response_data['idx']}",safe=False)
+    
+def chatbot(request):
+    if request.method == 'POST':
+        post_data = json.loads(request.body.decode("utf-8"))
+        message = post_data.get('message')
+        if message is not None:
+            response = get_response(message)
+            return JsonResponse({'answer': response})
+        else:
+            return JsonResponse({'error': 'Invalid message'})
+    else:
+        return render(request, 'chatbot.html')

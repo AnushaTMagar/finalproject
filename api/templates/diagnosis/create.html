@@ -1,4 +1,4 @@
-{% extends 'core/base_menu.html' %}
+{% extends 'base/base_menu.html' %}
 {% load static %}
 {% block header %}
     <style>
@@ -104,8 +104,7 @@
                 </div>
                 <div class="col-md-2">
                     <button class="btn btn-danger"
-                            onclick="window.location='{% url 'patients:patient_diagnosis' patient_id=patient.id %}'">
-                        clear
+                    onclick="window.location='{% url 'doctors:patient_diagnosis' patient_id=patient.id %}'">          clear
                     </button>
                 </div>
             </div>

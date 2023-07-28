@@ -215,3 +215,4 @@ class Diagnosis(models.Model):
         db_table = 'diagnosis'
         verbose_name = _('Diagnosis')
         verbose_name_plural = _('Diagnosis')
+        

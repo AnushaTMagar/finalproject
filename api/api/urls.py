@@ -73,6 +73,8 @@ urlpatterns = [
     path('admin-approve-appointment', views.admin_approve_appointment_view,name='admin-approve-appointment'),
     path('approve-appointment/<int:pk>', views.approve_appointment_view,name='approve-appointment'),
     path('reject-appointment/<int:pk>', views.reject_appointment_view,name='reject-appointment'),
+    path('chatbot/', views.chatbot, name='chatbot'),
+    path('', views.chatbot, name='chatbot'),
 ]
 
 
