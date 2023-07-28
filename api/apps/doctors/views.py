@@ -67,6 +67,19 @@ def patient_test_action(request, patient_id):
         }
     )
 
+@login_required
+def patient_test_show(request, patient_id):
+    patient = Patient.objects.get(pk=patient_id)
+    tests = patient.test_recs
+    return render(
+        request,
+        'patients/patient_testss.html',
+        {
+            'patient': patient,
+            'tests': tests
+        }
+    )
+
 
 @login_required
 def patient_dynamics_action(request, patient_id):
@@ -106,17 +119,39 @@ def patient_appointments_action(request, patient_id):
 
 @login_required
 def patient_diagnosis_action(request, patient_id):
+    print('diagnosis view init')
     patients=Patient.objects.all().filter(status=True,assignedDoctorId=request.user.id)
+    for patient in patients:
+      nameto=patient.user
     doctor=Doctor.objects.get(user_id=request.user.id)
+    diagnosis=Diagnosis.objects.all().filter(patient=patient)
+    print(diagnosis)
     return render(
         request,
         'doctors/patient_diagnosis.html',
-        {
+        { 
+            'diagnosiss':diagnosis,
             'patients_count': patients,
             'patient': doctor
         }
     )
 
+@login_required
+def patient_diagnosis_action2(request):
+    print('diagnosis view init')
+    patients=Patient.objects.all().filter(status=True,assignedDoctorId=request.user.id)
+    for patient in patients:
+      nameto=patient.user
+    diagnosis=Diagnosis.objects.all()
+    print(diagnosis)
+    return render(
+        request,
+        'doctors/diagnosis_dashboard.html',
+        { 
+            'diagnosiss':diagnosis,
+            'patients_count': patients,
+        }
+    )
 
 # @login_required
 # def create_action(request):

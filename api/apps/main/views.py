@@ -426,11 +426,10 @@ def discharge_patient_view(request,pk):
     }
     if request.method == 'POST':
         feeDict ={
-            'roomCharge':int(request.POST['roomCharge'])*int(d),
             'doctorFee':request.POST['doctorFee'],
             'medicineCost' : request.POST['medicineCost'],
             'OtherCharge' : request.POST['OtherCharge'],
-            'total':(int(request.POST['roomCharge'])*int(d))+int(request.POST['doctorFee'])+int(request.POST['medicineCost'])+int(request.POST['OtherCharge'])
+            'total':int(request.POST['doctorFee'])+int(request.POST['medicineCost'])+int(request.POST['OtherCharge'])
         }
         patientDict.update(feeDict)
         #for updating to database patientDischargeDetails (pDD)
@@ -445,10 +444,9 @@ def discharge_patient_view(request,pk):
         pDD.releaseDate=date.today()
         pDD.daySpent=int(d)
         pDD.medicineCost=int(request.POST['medicineCost'])
-        pDD.roomCharge=int(request.POST['roomCharge'])*int(d)
         pDD.doctorFee=int(request.POST['doctorFee'])
         pDD.OtherCharge=int(request.POST['OtherCharge'])
-        pDD.total=(int(request.POST['roomCharge'])*int(d))+int(request.POST['doctorFee'])+int(request.POST['medicineCost'])+int(request.POST['OtherCharge'])
+        pDD.total=int(request.POST['doctorFee'])+int(request.POST['medicineCost'])+int(request.POST['OtherCharge'])
         pDD.save()
         return render(request,'patients/patient_final_bill.html',context=patientDict)
     return render(request,'patients/patient_generate_bill.html',context=patientDict)
@@ -486,7 +484,6 @@ def download_pdf_view(request,pk):
         'releaseDate':dischargeDetails[0].releaseDate,
         'daySpent':dischargeDetails[0].daySpent,
         'medicineCost':dischargeDetails[0].medicineCost,
-        'roomCharge':dischargeDetails[0].roomCharge,
         'doctorFee':dischargeDetails[0].doctorFee,
         'OtherCharge':dischargeDetails[0].OtherCharge,
         'total':dischargeDetails[0].total,
@@ -853,7 +850,7 @@ def patient_discharge_view(request):
         'releaseDate':dischargeDetails[0].releaseDate,
         'daySpent':dischargeDetails[0].daySpent,
         'medicineCost':dischargeDetails[0].medicineCost,
-        'roomCharge':dischargeDetails[0].roomCharge,
+      
         'doctorFee':dischargeDetails[0].doctorFee,
         'OtherCharge':dischargeDetails[0].OtherCharge,
         'total':dischargeDetails[0].total,
@@ -942,3 +939,4 @@ def chatbot(request):
             return JsonResponse({'error': 'Invalid message'})
     else:
         return render(request, 'chatbot.html')
+    

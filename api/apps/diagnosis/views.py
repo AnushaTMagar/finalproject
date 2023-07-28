@@ -14,6 +14,7 @@ def show_action(request, diagnosis_id):
 
 @login_required
 def create_action(request, patient_id):
+    print(' diagonosis init')
     if request.POST:
         form = DiagnosisForm(request.POST)
         if form.is_valid():

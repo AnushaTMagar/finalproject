@@ -60,7 +60,7 @@ class TestRecAdmin(admin.ModelAdmin):
     }
 
     def _view_patient(self, rec):
-        return rec.patient.short_info
+        return rec.patient.user
 
     _view_patient.short_description = _('Patient')
 
@@ -73,7 +73,7 @@ class DiagnosisAdmin(admin.ModelAdmin):
     list_filter = ('diagnosis_type',)
 
     def _view_patient(self, diagnosis):
-        return diagnosis.patient.short_info
+        return diagnosis.patient.user
 
     _view_patient.short_description = _('Patient')
 

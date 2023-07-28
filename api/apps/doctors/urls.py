@@ -12,7 +12,9 @@ urlpatterns = [
     re_path(r'^show/(?P<patient_id>\d+)$', show_action, name='show'),
     re_path(r'^delete/(?P<patient_id>\d+)$', delete_action, name='delete'),
     re_path(r'(?P<patient_id>\d+)/tests$', patient_test_action, name='patient_tests'),
+    re_path(r'(?P<patient_id>\d+)/tests2$', patient_test_show, name='patient_show2'),
     re_path(r'(?P<patient_id>\d+)/dynamics$', patient_dynamics_action, name='patient_dynamics'),
     re_path(r'(?P<patient_id>\d+)/appointments$', patient_appointments_action, name='patient_appointments'),
     re_path(r'(?P<patient_id>\d+)/diagnosis$', patient_diagnosis_action, name='patient_diagnosis'),
+    re_path(r'^diagnosis2$', patient_diagnosis_action2, name='patient_diagnosis2'),
 ]

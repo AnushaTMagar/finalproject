@@ -94,7 +94,7 @@ class PatientDischargeDetails(models.Model):
     releaseDate=models.DateField(null=False)
     daySpent=models.PositiveIntegerField(null=False)
 
-    roomCharge=models.PositiveIntegerField(null=False)
+   
     medicineCost=models.PositiveIntegerField(null=False)
     doctorFee=models.PositiveIntegerField(null=False)
     OtherCharge=models.PositiveIntegerField(null=False)
